@@ -21,7 +21,7 @@ const Products: React.FC<IProductsProps> = ({
 }) => {
 	// Фильтруем список продуктов, чтобы он не превышал amount
 	const list = products.filter((_, i) => i < amount);
-	 
+
 	return (
 		<section className={styles.products} style={style}>
 			{title && <h2>{title}</h2>}

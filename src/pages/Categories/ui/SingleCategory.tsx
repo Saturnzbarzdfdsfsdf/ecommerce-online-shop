@@ -1,11 +1,11 @@
-import React from 'react';
-// import { Poster } from '';
-import Category from './Category';
+import { FC } from 'react';
+import { Poster } from '../../../widget/Poster';
+import { Category } from '../../Category/index';
 
-const SingleCategory: React.FC = () => {
+const SingleCategory: FC = () => {
 	return (
 		<>
-			{/* <Poster /> */}
+			<Poster />
 			<Category />
 		</>
 	);

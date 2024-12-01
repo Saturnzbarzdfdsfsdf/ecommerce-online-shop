@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
-import {RootState, useAppDispatch } from '../../../redux/store';
+import { RootState, useAppDispatch } from '../../../redux/store';
 import { useNavigate, useParams } from 'react-router-dom';
 
 // redux api slice
@@ -42,13 +42,8 @@ const SingleProduct: React.FC = () => {
 		related: state.products.related,
 	}));
 
-	console.log(related, 'related ');
-	console.log(list, 'list ');
-
 	// isLoading, isFetching, isSuccess встроено в apiSlice
 	const { data, isLoading, isFetching, isSuccess } = useGetProductQuery({ id });
-
-	console.log(data, 'data in sp');
 
 	// Получение связанных продуктов при успешной загрузке
 	useEffect(() => {

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { addItemToCart } from '../../../redux/user/userSlice';
 import { ROUTES } from '../../../shared/consts/routes';
 
+import { Button } from '../../../shared/ui/button/index';
+
 import styles from './Product.module.css';
 
 // Определяем интерфейс для продукта
@@ -17,15 +19,9 @@ interface ProductItem {
 	description: string;
 }
 
-// Определяем интерфейс для пропсов компонента Product
-interface ProductProps {
-	item: ProductItem;
-}
-
 const SIZES = [42, 46, 48, 50, 52];
 
-const Product: FC<ProductProps> = ( item ) => {
-
+const Product: FC<ProductItem> = item => {
 	const { images, title, price, description } = item;
 
 	const dispatch = useAppDispatch();
@@ -39,7 +35,15 @@ const Product: FC<ProductProps> = ( item ) => {
 		}
 	}, [images]);
 
-	const addToCart = () => {
+	const onClickSetSize = (size: number | null) => {
+		setCurrentSize(size);
+	};
+
+	const onClickSetCurrentImage = (image: string) => {
+		setCurrentImage(image);
+	};
+
+	const onClickAddCart = () => {
 		dispatch(addItemToCart(item));
 	};
 
@@ -56,14 +60,14 @@ const Product: FC<ProductProps> = ( item ) => {
 							key={i}
 							className={styles.image}
 							style={{ backgroundImage: `url(${image})` }}
-							onClick={() => setCurrentImage(image)}
+							onClick={onClickSetCurrentImage}
 						/>
 					))}
 				</div>
 			</div>
 			<div className={styles.info}>
 				<h1 className={styles.title}>{title}</h1>
-				<div className={styles.price}>{price} $</div>
+				<p className={styles.price}>{price} $</p>
 				<div className={styles.color}>
 					<span>Color:</span> Green
 				</div>
@@ -73,7 +77,7 @@ const Product: FC<ProductProps> = ( item ) => {
 						{SIZES.map(size => (
 							<div
 								key={size}
-								onClick={() => setCurrentSize(size)}
+								onClick={onClickSetSize}
 								className={`${styles.size} ${
 									currentSize === size ? styles.active : ''
 								}`}
@@ -87,14 +91,14 @@ const Product: FC<ProductProps> = ( item ) => {
 				<p className={styles.description}>{description}</p>
 
 				<div className={styles.actions}>
-					<button
-						onClick={addToCart}
+					<Button
+						onClick={onClickAddCart}
 						className={styles.add}
 						disabled={!currentSize}
 					>
 						Add to cart
-					</button>
-					<button className={styles.favorites}>Add to favorites</button>
+					</Button>
+					<Button className={styles.favorites}>Add to favorites</Button>
 				</div>
 
 				<div className={styles.bottom}>

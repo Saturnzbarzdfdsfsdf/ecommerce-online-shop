@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Categories.module.css';
@@ -17,11 +17,7 @@ interface ICategoriesProps {
 	amount: number;
 }
 
-const Categories: React.FC<ICategoriesProps> = ({
-	title,
-	products = [],
-	amount,
-}) => {
+const Categories: FC<ICategoriesProps> = ({ title, products = [], amount }) => {
 	// Фильтруем список продуктов, чтобы он не превышал amount
 	const list = products.filter((_, i) => i < amount);
 
@@ -43,33 +39,3 @@ const Categories: React.FC<ICategoriesProps> = ({
 };
 
 export default Categories;
-
-// import { Link } from 'react-router-dom';
-
-// import styles from './Categories.module.css';
-
-// const Categories = ({ title, products = [], amount }) => {
-// 	// фильтруем наш список продуктов чтобы не превышал amount(количество)
-// 	const list = products.filter((_, i) => i < amount);
-
-// 	return (
-// 		<section className={styles.section}>
-// 			<h2> {title} </h2>
-
-// 			<div className={styles.list}>
-// 				{list.map(({ id, name, image }) => (
-// 					<Link to={`/categories/${id}`} key={id} className={styles.item}>
-// 						<div
-// 							className={styles.image}
-// 							style={{ backgroundImage: `url(${image})` }}
-// 						/>
-// 						<h3 className={styles.title}>{name}</h3>
-// 					</Link>
-// 				))}
-// 			</div>
-
-// 		</section>
-// 	);
-// };
-
-// export default Categories;
