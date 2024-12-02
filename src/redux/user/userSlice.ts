@@ -72,32 +72,32 @@ export const loginUser = createAsyncThunk<
 });
 
 // Создаем асинхронное действие для обновления пользователя
-export const updateUser = createAsyncThunk<User, Partial<User> & { id: string }>(
-	'users/updateUser',
-	async (payload, thunkApi) => {
-		try {
-			const res = await axios.put(`${BASE_URL}/users/${payload.id}`, payload);
-			const login = await axios.get(`${BASE_URL}/auth/profile`, {
-				headers: {
-					Authorization: `Bearer ${res.data.access_token}`,
-				},
-			});
-			return login.data;
-		} catch (err: unknown) {
-			if (axios.isAxiosError(err)) {
-				// Проверяем, является ли err экземпляром AxiosError
-				const errorMessage =
-					err.response?.data?.message || err.message || 'Неизвестная ошибка';
-				console.log(errorMessage);
-				return thunkApi.rejectWithValue(errorMessage);
-			} else {
-				// Обработка других типов ошибок
-				console.log('Произошла ошибка:', err);
-				return thunkApi.rejectWithValue('Неизвестная ошибка');
-			}
+export const updateUser = createAsyncThunk<
+	User,
+	Partial<User> & { id: string }
+>('users/updateUser', async (payload, thunkApi) => {
+	try {
+		const res = await axios.put(`${BASE_URL}/users/${payload.id}`, payload);
+		const login = await axios.get(`${BASE_URL}/auth/profile`, {
+			headers: {
+				Authorization: `Bearer ${res.data.access_token}`,
+			},
+		});
+		return login.data;
+	} catch (err: unknown) {
+		if (axios.isAxiosError(err)) {
+			// Проверяем, является ли err экземпляром AxiosError
+			const errorMessage =
+				err.response?.data?.message || err.message || 'Неизвестная ошибка';
+			console.log(errorMessage);
+			return thunkApi.rejectWithValue(errorMessage);
+		} else {
+			// Обработка других типов ошибок
+			console.log('Произошла ошибка:', err);
+			return thunkApi.rejectWithValue('Неизвестная ошибка');
 		}
 	}
-);
+});
 
 // Функция для добавления текущего пользователя в состояние
 const addCurrentUser = (state: UserState, { payload }: PayloadAction<User>) => {
@@ -120,9 +120,12 @@ const userSlice = createSlice({
 	reducers: {
 		addItemToCart: (
 			state,
-			{ payload }: PayloadAction<{ id: string; quantity?: number }>
+			{
+				payload,
+			}: PayloadAction<{ id: string; quantity?: number;}>
 		) => {
 			let newCart = [...state.cart];
+			
 			const existingItem = state.cart.find(item => item.id === payload.id);
 
 			if (existingItem) {
@@ -159,129 +162,3 @@ export const { addItemToCart, toggleForm, toggleFormType, removeItemFromCart } =
 	userSlice.actions;
 
 export default userSlice.reducer;
-
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-// import axios from 'axios';
-
-// import { BASE_URL } from '../../shared/consts/baseUrl';
-
-// export const createUser = createAsyncThunk(
-// 	'users/getUsers',
-// 	async (payload, thunkApi) => {
-// 		try {
-
-// 			const res = await axios.post(`${BASE_URL}/users`, payload);
-
-// 			console.log('response create', res);
-// 			return res.data;
-// 		} catch (err) {
-// 			const errorMessage =
-// 				err.response?.data?.message || err.message || 'Неизвестная ошибка';
-// 			console.log(errorMessage);
-
-// 			return thunkApi.rejectWithValue(errorMessage);
-// 		}
-// 	}
-// );
-// export const loginUser = createAsyncThunk(
-// 	'users/loginUser',
-// 	async (payload, thunkApi) => {
-// 		try {
-
-// 			const res = await axios.post(`${BASE_URL}/auth/login`, payload);
-// 			const login = await axios.get(`${BASE_URL}/auth/profile`, {
-// 				headers: {
-// 					Authorization: `Bearer ${res.data.access_token}`,
-// 				},
-// 			});
-
-// 			return login.data;
-// 		} catch (err) {
-// 			const errorMessage =
-// 				err.response?.data?.message || err.message || 'Неизвестная ошибка';
-// 			console.log(errorMessage);
-
-// 			return thunkApi.rejectWithValue(errorMessage);
-// 		}
-// 	}
-// );
-// export const updateUser = createAsyncThunk(
-// 	'users/updateUser',
-// 	async (payload, thunkApi) => {
-// 		try {
-
-// 			const res = await axios.put(`${BASE_URL}/users/${payload.id}`, payload);
-// 			const login = await axios.get(`${BASE_URL}/auth/profile`, {
-// 				headers: {
-// 					Authorization: `Bearer ${res.data.access_token}`,
-// 				},
-// 			});
-
-// 			return login.data;
-// 		} catch (err) {
-// 			const errorMessage =
-// 				err.response?.data?.message || err.message || 'Неизвестная ошибка';
-// 			console.log(errorMessage);
-
-// 			return thunkApi.rejectWithValue(errorMessage);
-// 		}
-// 	}
-// );
-
-// const addCurrentUser = (state, { payload }) => {
-// 	state.currentUser = payload;
-// };
-
-// const userSlice = createSlice({
-// 	// имя для среза
-// 	name: 'user',
-// 	// начальное состояние
-// 	initialState: {
-// 		currentUser: null,
-// 		cart: [],
-// 		isLoading: false,
-// 		// для users
-// 		showForm: false,
-// 		formType: 'signup',
-// 	},
-
-// 	reducers: {
-// 		addItemToCart: (state, { payload }) => {
-
-// 			let newCart = [...state.cart];
-
-// 			const existingItem = state.cart.find(item => item.id === payload.id);
-
-// 			if (existingItem) {
-
-// 				newCart = newCart.map(item => {
-// 					return item.id === payload.id
-// 						? { ...item, quantity: payload.quantity || item.quantity + 1 }
-// 						: item;
-// 				});
-// 			} else newCart.push({ ...payload, quantity: 1 });
-// 			state.cart = newCart;
-// 		},
-// 		removeItemFromCart: (state, { payload }) => {
-// 			state.cart = state.cart.filter(({ id }) => id !== payload);
-// 		},
-// 		toggleForm: (state, action) => {
-// 			state.showForm = action.payload;
-// 		},
-// 		toggleFormType: (state, action) => {
-// 			state.formType = action.payload;
-// 		},
-// 	},
-// 	// обработка асинхронный действий
-// 	extraReducers: builder => {
-// 		builder.addCase(createUser.fulfilled, addCurrentUser);
-// 		builder.addCase(loginUser.fulfilled, addCurrentUser);
-// 		builder.addCase(updateUser.fulfilled, addCurrentUser);
-// 	},
-// });
-
-// export const { addItemToCart, toggleForm, toggleFormType, removeItemFromCart } =
-// 	userSlice.actions;
-
-// export default userSlice.reducer;

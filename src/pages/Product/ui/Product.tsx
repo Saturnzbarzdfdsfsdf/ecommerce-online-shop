@@ -1,27 +1,20 @@
-import { useState, FC, useEffect } from 'react';
+import React, { useState, FC, useEffect, useCallback } from 'react';
 
-import { useAppDispatch } from '../../../redux/store';
 import { Link } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../redux/store';
 import { addItemToCart } from '../../../redux/user/userSlice';
-import { ROUTES } from '../../../shared/consts/routes';
 
+import { ROUTES } from '../../../shared/consts/routes';
 import { Button } from '../../../shared/ui/button/index';
+
+import { IProductItem } from '../../../shared/types';
 
 import styles from './Product.module.css';
 
-// Определяем интерфейс для продукта
-interface ProductItem {
-	id: string;
-	images: string[];
-	title: string;
-	price: number;
-	description: string;
-}
-
 const SIZES = [42, 46, 48, 50, 52];
 
-const Product: FC<ProductItem> = item => {
+const Product: FC<IProductItem> = React.memo(item => {
 	const { images, title, price, description } = item;
 
 	const dispatch = useAppDispatch();
@@ -35,20 +28,21 @@ const Product: FC<ProductItem> = item => {
 		}
 	}, [images]);
 
-	const onClickSetSize = (size: number | null) => {
+	const onClickSetSize = useCallback((size: number | null) => {
 		setCurrentSize(size);
-	};
+	}, []);
 
-	const onClickSetCurrentImage = (image: string) => {
+	const onClickSetCurrentImage = useCallback((image: string | null) => {
 		setCurrentImage(image);
-	};
+	}, []);
 
-	const onClickAddCart = () => {
+	const onClickAddCart = useCallback(() => {
 		dispatch(addItemToCart(item));
-	};
+	}, [dispatch, item]);
 
 	return (
 		<section className={styles.product}>
+			
 			<div className={styles.images}>
 				<div
 					className={styles.current}
@@ -60,11 +54,12 @@ const Product: FC<ProductItem> = item => {
 							key={i}
 							className={styles.image}
 							style={{ backgroundImage: `url(${image})` }}
-							onClick={onClickSetCurrentImage}
+							onClick={() => onClickSetCurrentImage(image)}
 						/>
 					))}
 				</div>
 			</div>
+
 			<div className={styles.info}>
 				<h1 className={styles.title}>{title}</h1>
 				<p className={styles.price}>{price} $</p>
@@ -77,7 +72,7 @@ const Product: FC<ProductItem> = item => {
 						{SIZES.map(size => (
 							<div
 								key={size}
-								onClick={onClickSetSize}
+								onClick={() => onClickSetSize(size)}
 								className={`${styles.size} ${
 									currentSize === size ? styles.active : ''
 								}`}
@@ -108,6 +103,6 @@ const Product: FC<ProductItem> = item => {
 			</div>
 		</section>
 	);
-};
+});
 
 export default Product;
