@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-// import { IProductSize } from '../../../../shared/types';
-
 import styles from '../Product.module.css';
 
 interface IProductSize {

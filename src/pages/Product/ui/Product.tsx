@@ -69,7 +69,7 @@ const Product: FC<IProductItem> = React.memo(item => {
 				/>
 
 				<div className={styles.bottom}>
-					<div className={styles.purchase}>19 people purchased</div>
+					<span>19 people purchased</span>
 					<Link to={ROUTES.HOME}>Return to store</Link>
 				</div>
 			</div>
