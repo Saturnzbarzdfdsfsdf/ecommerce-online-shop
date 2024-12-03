@@ -20,11 +20,10 @@ const Home: React.FC = () => {
 
 
 	useEffect(() => {
-		if (list.length > 0) {
-
-			dispatch(filteredByPrice(50));
+		if (list.length > 0 && filtered.length === 0) {
+			dispatch(filteredByPrice(50))
 		}
-	}, [dispatch, list.length]);
+	}, [dispatch, list.length, filtered.length])
 
 	return (
 		<>
@@ -37,5 +36,5 @@ const Home: React.FC = () => {
 	);
 };
 
-export default Home;
+export default React.memo(Home);
 

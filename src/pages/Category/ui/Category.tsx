@@ -7,32 +7,31 @@ import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
 import { Products } from '../../Products/index';
 
-import styles from './Category.module.css';
 import { Button } from '../../../shared/ui/button';
 import { Input } from '../../../shared/ui/input/index';
 
-// Определяем интерфейс для продукта
+import styles from './Category.module.css';
+
 interface Product {
 	id: string;
 	name: string;
 	image: string;
 }
 
-// Определяем интерфейс для состояния фильтров
 interface FilterValues {
 	title: string;
 	price_min: number;
 	price_max: number;
 }
 
-// Определяем интерфейс для параметров запроса
+
 interface QueryParams {
 	categoryId: string | undefined;
 	limit: number;
 	offset: number;
 }
 
-// Определяем интерфейс для состояния Redux
+
 interface CategoriesState {
 	list: Array<{ id: string; name: string }>;
 }
@@ -68,7 +67,7 @@ const Category: React.FC = () => {
 
 	const { data, isLoading, isSuccess } = useGetProductsQuery(params);
 
-	// Пагинация
+
 	useEffect(() => {
 		if (!isLoading) return;
 		if (!Array.isArray(data)) return;
@@ -99,7 +98,7 @@ const Category: React.FC = () => {
 		}
 	}, [list, id]);
 
-	// Функция для загрузки дополнительных данных
+	
 	const loadMoreProducts = () => {
 		setParams(prevParams => ({
 			...prevParams,

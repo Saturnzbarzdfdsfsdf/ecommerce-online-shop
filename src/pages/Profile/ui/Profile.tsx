@@ -9,7 +9,7 @@ import styles from './Profile.module.css';
 
 
 interface IUser {
-	id: string; // Сделаем id обязательным
+	id: string;
 	name: string;
 	email: string;
 	password: string;
@@ -20,12 +20,12 @@ interface IUserState {
 	currentUser: IUser | null;
 }
 
-const Profile: React.FC = () => {
-	const dispatch = useAppDispatch();
+const Profile: React.FC= () => {
+	const dispatch = useAppDispatch()
 
 	const { currentUser } = useSelector(
 		(state: { user: IUserState }) => state.user
-	);
+	)
 
 	const [values, setValue] = useState<IUser>({
 		id: '',
@@ -34,38 +34,35 @@ const Profile: React.FC = () => {
 		password: '',
 		avatar:
 			'https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg',
-	});
+	})
 
 	useEffect(() => {
-		if (!currentUser) return;
+		if (!currentUser) return
 
-		setValue(currentUser);
-	}, [currentUser]);
+		setValue(currentUser)
+	}, [currentUser])
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { value, name } = event.target;
+		const { value, name } = event.target
 		setValue(prevValues => ({
 			...prevValues,
 			[name]: value,
-		}));
-	};
+		}))
+	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+		e.preventDefault()
 
-		// Проверка наличия id перед отправкой
 		if (!values.id) {
-			console.error('ID is required for updating user.');
-			return;
+			console.error('ID is required for updating user.')
+			return
 		}
 
-		// Проверка на заполненность полей
-		const isNotEmpty = Object.values(values).every(val => val);
-		if (!isNotEmpty) return;
+		const isNotEmpty = Object.values(values).every(val => val)
+		if (!isNotEmpty) return
 
-		// Если заполнены, то отправляю в redux
-		dispatch(updateUser(values));
-	};
+		dispatch(updateUser(values))
+	}
 
 	return (
 		<section className={styles.profile}>
@@ -89,7 +86,7 @@ const Profile: React.FC = () => {
 						<input
 							onChange={handleChange}
 							value={values.name}
-							type='text' // Исправлено с 'name' на 'text'
+							type='text'
 							name='name'
 							placeholder='Your name'
 							autoComplete='off'
@@ -113,7 +110,7 @@ const Profile: React.FC = () => {
 						<input
 							onChange={handleChange}
 							value={values.avatar}
-							type='text' // Исправлено с 'avatar' на 'text'
+							type='text'
 							name='avatar'
 							placeholder='Your avatar'
 							autoComplete='off'
@@ -127,7 +124,7 @@ const Profile: React.FC = () => {
 				</form>
 			)}
 		</section>
-	);
-};
+	)
+}
 
 export default Profile;

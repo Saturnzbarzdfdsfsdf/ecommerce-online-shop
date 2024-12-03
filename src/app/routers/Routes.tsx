@@ -10,7 +10,7 @@ import { Profile } from '../../pages/Profile/index';
 import { Cart } from '../../features/Cart/index';
 
 import { ROUTES } from '../../shared/consts/routes';
-// Роутинг по страницам
+
 const AppRouter: React.FC = () => {
 	return (
 		<Routes>

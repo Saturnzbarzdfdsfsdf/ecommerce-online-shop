@@ -2,16 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { IProduct } from '../../Home/ui/Home';
+import { IProductsProps } from '../../../shared/types/index'
 
 import styles from './Products.module.css';
-
-interface IProductsProps {
-	title?: string;
-	style?: React.CSSProperties;
-	products?: IProduct[];
-	amount: number;
-}
 
 const Products: React.FC<IProductsProps> = ({
 	title,
@@ -19,7 +12,7 @@ const Products: React.FC<IProductsProps> = ({
 	products = [],
 	amount,
 }) => {
-	// Фильтруем список продуктов, чтобы он не превышал amount
+
 	const list = products.filter((_, i) => i < amount);
 
 	return (
@@ -57,4 +50,4 @@ const Products: React.FC<IProductsProps> = ({
 	);
 };
 
-export default Products;
+export default React.memo(Products);
