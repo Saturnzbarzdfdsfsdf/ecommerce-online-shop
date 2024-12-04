@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect, useCallback } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -9,15 +9,13 @@ import { ROUTES } from '../../../shared/consts/routes';
 
 import { ImageGallery, SizeSelector, ProductInfo, Actions } from '../index';
 
-// import { Button } from '../../../shared/ui/button/index';
-
 import { IProductItem } from '../../../shared/types';
 
 import styles from './Product.module.css';
 
 const SIZES = [42, 46, 48, 50, 52];
 
-const Product: FC<IProductItem> = React.memo(item => {
+const Product: FC<IProductItem> = item => {
 	const { images, title, price, description } = item;
 
 	const dispatch = useAppDispatch();
@@ -31,17 +29,17 @@ const Product: FC<IProductItem> = React.memo(item => {
 		}
 	}, [images]);
 
-	const onClickSetSize = useCallback((size: number | null) => {
+	const onClickSetSize = (size: number | null) => {
 		setCurrentSize(size);
-	}, []);
+	};
 
-	const onClickSetCurrentImage = useCallback((image: string | null) => {
+	const onClickSetCurrentImage = (image: string | null) => {
 		setCurrentImage(image);
-	}, []);
+	};
 
-	const onClickAddCart = useCallback(() => {
+	const onClickAddCart = () => {
 		dispatch(addItemToCart(item));
-	}, [dispatch, item]);
+	};
 
 	return (
 		<section className={styles.product}>
@@ -77,6 +75,6 @@ const Product: FC<IProductItem> = React.memo(item => {
 		</section>
 
 	);
-});
+};
 
 export default Product;

@@ -13,8 +13,8 @@ const Products: React.FC<IProductsProps> = ({
 	amount,
 }) => {
 
-	const list = products.filter((_, i) => i < amount);
-
+	const list = products.slice(0, amount)
+	
 	return (
 		<section className={styles.products} style={style}>
 			{title && <h2>{title}</h2>}
@@ -50,4 +50,4 @@ const Products: React.FC<IProductsProps> = ({
 	);
 };
 
-export default React.memo(Products);
+export default Products;

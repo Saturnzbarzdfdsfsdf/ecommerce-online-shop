@@ -53,4 +53,4 @@ const SingleProduct: React.FC = () => {
 	)
 }
 
-export default React.memo(SingleProduct)
+export default SingleProduct

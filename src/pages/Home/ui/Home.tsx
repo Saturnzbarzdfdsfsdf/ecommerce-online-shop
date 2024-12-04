@@ -36,5 +36,5 @@ const Home: React.FC = () => {
 	);
 };
 
-export default React.memo(Home);
+export default Home;
 
