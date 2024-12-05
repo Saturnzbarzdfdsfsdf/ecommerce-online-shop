@@ -10,25 +10,8 @@ import { getRelatedProducts } from '../../../redux/products/productsSlice';
 
 import { ROUTES } from '../../../shared/consts/routes';
 
-// components
 import { Product, Products } from '../../Products/index';
 
-// Определяем типы для продукта и связанных продуктов
-// interface IProductData {
-// 	id: string;
-// 	images: string[];
-// 	title: string;
-// 	price: number;
-// 	category: {
-// 		id: string;
-// 		name: string;
-// 	};
-// }
-
-// interface IProductsState {
-// 	list: IProductData[];
-// 	related: IProductData[];
-// }
 
 const SingleProduct: React.FC = () => {
 	const dispatch = useAppDispatch();

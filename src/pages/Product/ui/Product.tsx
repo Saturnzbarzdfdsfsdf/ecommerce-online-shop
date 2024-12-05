@@ -9,8 +9,6 @@ import { ROUTES } from '../../../shared/consts/routes';
 
 import { ImageGallery, SizeSelector, ProductInfo, Actions } from '../index';
 
-// import { Button } from '../../../shared/ui/button/index';
-
 import { IProductItem } from '../../../shared/types';
 
 import styles from './Product.module.css';

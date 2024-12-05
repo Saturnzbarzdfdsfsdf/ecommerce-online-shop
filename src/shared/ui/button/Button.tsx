@@ -17,7 +17,6 @@ interface IButton {
 const Button: FC<IButton> = props => {
 	const {
 		children,
-		Icon,
 		disabled = false,
 		className,
 		onClick,
@@ -30,7 +29,6 @@ const Button: FC<IButton> = props => {
 		onClick={onClick} 
 		className={className}
 		>
-			{Icon && <Icon />}
 			{children}
 		</button>
 	);

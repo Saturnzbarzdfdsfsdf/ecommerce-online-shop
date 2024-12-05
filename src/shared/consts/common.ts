@@ -10,7 +10,6 @@ export const shuffle = <T>(arr: T[]): T[] => {
 	return shuffled;
 };
 
-
 // Функция для построения URL с параметрами
 export const buildUrl = (
 	url: string,
