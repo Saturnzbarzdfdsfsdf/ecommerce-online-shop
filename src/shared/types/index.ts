@@ -1,1 +1,2 @@
-export { type IProductItem } from './productsTypes';
+export { type IProductItem, type IProductsProps, type IProduct } from './productsTypes'
+export { type ICategoriesProps } from './categoriesTypes'

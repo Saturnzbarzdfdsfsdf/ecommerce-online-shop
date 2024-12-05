@@ -1,6 +1,18 @@
-import styles from '../Product.module.css';
+import { FC } from 'react'
 
-const ImageGallery = ({ images, currentImage, onSetCurrentImage }) => (
+import styles from '../Product.module.css'
+
+interface IProductImage {
+	images: string[]
+	currentImage: string | null
+	onSetCurrentImage: (image: string) => void
+}
+
+const ImageGallery: FC<IProductImage> = ({
+	images,
+	currentImage,
+	onSetCurrentImage,
+}) => (
 	<div className={styles.images}>
 		<div
 			className={styles.current}
@@ -17,6 +29,6 @@ const ImageGallery = ({ images, currentImage, onSetCurrentImage }) => (
 			))}
 		</div>
 	</div>
-);
+)
 
-export default ImageGallery;
+export default ImageGallery

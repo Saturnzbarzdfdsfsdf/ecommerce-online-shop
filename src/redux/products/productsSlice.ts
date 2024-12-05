@@ -2,9 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { shuffle } from '../../shared/consts/common';
 import { BASE_URL } from '../../shared/consts/baseUrl';
-import { IProduct } from '../../pages/Home/ui/Home';
+import { IProduct } from '../../shared/types/productsTypes';
 
-// Определяем интерфейс для продукта
 // interface IProduct {
 // 	id: string;
 // 	name: string;
@@ -16,7 +15,6 @@ import { IProduct } from '../../pages/Home/ui/Home';
 // 	};
 // }
 
-// Определяем интерфейс для состояния слайса
 interface ProductsState {
 	list: IProduct[];
 	filtered: IProduct[];
@@ -24,13 +22,13 @@ interface ProductsState {
 	isLoading: boolean;
 }
 
-// Создаем асинхронное действие для получения продуктов
+
 export const fetchProducts = createAsyncThunk<IProduct[], void>(
 	'products/fetchProducts',
 	async (_, thunkApi) => {
 		try {
 			const res = await axios.get(`${BASE_URL}/products`);
-			return res.data as IProduct[]; // Убедитесь, что данные соответствуют типу Product[]
+			return res.data as IProduct[]; 
 		} catch (err) {
 			console.error(err);
 			return thunkApi.rejectWithValue(err);

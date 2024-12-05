@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-// Импортируйте тип корневого состояния
 import { RootState, useAppDispatch } from '../../../redux/store';
 import { filteredByPrice } from '../../../redux/products/productsSlice';
 
@@ -9,21 +8,10 @@ import { Products } from '../../Products/index';
 import { Categories } from '../../Categories/index';
 import { Poster } from '../../../widget/Poster/index';
 
-export interface IProduct {
-	id: string;
-	images: string[];
-	title: string;
-	price: number;
-	category: {
-		id: string;
-		name: string;
-	};
-}
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
 
-	// Типизация состояния из Redux
 	const { list, filtered, categories } = useSelector((state: RootState) => ({
 		list: state.products.list,
 		filtered: state.products.filtered,
@@ -32,11 +20,10 @@ const Home: React.FC = () => {
 
 
 	useEffect(() => {
-		if (list.length > 0) {
-			// Передаем в функцию фильтрации стоимость
-			dispatch(filteredByPrice(50));
+		if (list.length > 0 && filtered.length === 0) {
+			dispatch(filteredByPrice(50))
 		}
-	}, [dispatch, list.length]);
+	}, [dispatch, list.length, filtered.length])
 
 	return (
 		<>
@@ -51,5 +38,3 @@ const Home: React.FC = () => {
 
 export default Home;
 
-
-			// <Products products={filtered as IProduct[]} amount={5} title='Three' />;
