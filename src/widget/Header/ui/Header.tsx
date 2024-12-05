@@ -93,6 +93,7 @@ const Header: React.FC = () => {
 						</svg>
 					</div>
 					<div className={styles.input}>
+						
 						<input
 							type='search'
 							name='search'
@@ -139,7 +140,7 @@ const Header: React.FC = () => {
 						<svg className={styles['icon-cart']}>
 							<use xlinkHref={'sprite.svg#bag'} />
 						</svg>
-						{/* Отображение количества товаров в корзине */}
+
 						{!!cart.length && (
 							<span className={styles.count}> {cart.length} </span>
 						)}

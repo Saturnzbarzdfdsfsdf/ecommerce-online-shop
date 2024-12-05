@@ -1,2 +1,2 @@
-export { default as Product} from '../Product/ui/Product'
-export { default as Products} from './ui/Products'
+export { default as Products } from './ui/Products';
+export { default as ProductItem } from './ui/ProductItem/index';

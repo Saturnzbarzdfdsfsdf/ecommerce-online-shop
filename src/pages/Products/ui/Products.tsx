@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { IProductsProps } from '../../../shared/types/index'
+import { IProductsProps } from '../../../shared/types/index';
 
 import styles from './Products.module.css';
+import ProductItem from './ProductItem';
 
 const Products: React.FC<IProductsProps> = ({
 	title,
@@ -12,37 +11,24 @@ const Products: React.FC<IProductsProps> = ({
 	products = [],
 	amount,
 }) => {
+	const list = products.slice(0, amount);
 
-	const list = products.slice(0, amount)
-	
 	return (
 		<section className={styles.products} style={style}>
+
 			{title && <h2>{title}</h2>}
 
 			<div className={styles.list}>
 				{list.map(
-					({ id, images = [], title, category: { name: cat }, price }) => (
-						<Link className={styles.product} to={`/products/${id}`} key={id}>
-							<div
-								className={styles.image}
-								style={{ backgroundImage: `url(${images[0]})` }}
-							/>
-							<div className={styles.wrapper}>
-								<h3 className={styles.title}>{title}</h3>
-								<div className={styles.cat}>{cat}</div>
-								<div className={styles.info}>
-									<div className={styles.prices}>
-										<div className={styles.price}>{price} $</div>
-										<div className={styles.oldPrices}>
-											{Math.floor(price * 0.8)} $
-										</div>
-									</div>
-									<div className={styles.purchases}>
-										{Math.floor(Math.random() * 20 + 1)} bought
-									</div>
-								</div>
-							</div>
-						</Link>
+					({ id, images = [], title, category, price }) => (
+						<ProductItem
+							key={id}
+							id={id}
+							images={images}
+							title={title}
+							category={category}
+							price={price}
+						/>
 					)
 				)}
 			</div>

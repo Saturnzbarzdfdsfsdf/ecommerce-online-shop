@@ -8,7 +8,6 @@ import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 import { Products } from '../../Products/index';
 
 import { Button } from '../../../shared/ui/button';
-import { Input } from '../../../shared/ui/input/index';
 
 import styles from './Category.module.css';
 
@@ -74,10 +73,6 @@ const Category: React.FC = () => {
 
 		const products = data as Product[];
 
-		console.log('Products to add:', products);
-
-		// if (!data.length) return;
-
 		setPagination(pagination => [...pagination, ...products]);
 	}, [data, isLoading]);
 
@@ -140,21 +135,13 @@ const Category: React.FC = () => {
 						placeholder='0'
 					/>
 
-					<Input
+					<input
 						type='number'
 						name='price_max'
 						onChange={handleChange}
 						value={values.price_max}
 						placeholder='0'
-					></Input>
-
-					{/* <input
-						type='number'
-						name='price_max'
-						onChange={handleChange}
-						value={values.price_max}
-						placeholder='0'
-					/> */}
+					/>
 					
 				</div>
 				<button type='submit' hidden />

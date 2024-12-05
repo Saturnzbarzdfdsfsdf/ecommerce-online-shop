@@ -1,9 +1,10 @@
-import styles from './Poster.module.css';
+import { FC } from 'react';
 
 import BG from '../../../shared/assets/img/comp.png';
 
+import styles from './Poster.module.css';
 
-const Poster = () => {
+const Poster: FC = () => {
 	return (
 		<section className={styles.home}>
 			<div className={styles.title}>BIG DIG 20%</div>

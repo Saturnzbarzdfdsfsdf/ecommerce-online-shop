@@ -9,8 +9,8 @@ import { getRelatedProducts } from '../../../redux/products/productsSlice'
 
 import { ROUTES } from '../../../shared/consts/routes'
 
-// components
-import { Product, Products } from '../../Products/index'
+import { Product } from '../../Product/index'
+import { Products } from '../../Products/index'
 
 const SingleProduct: React.FC = () => {
 	const dispatch = useAppDispatch()
