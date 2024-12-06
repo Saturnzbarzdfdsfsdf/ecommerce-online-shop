@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { IProductsProps } from '../../../shared/types/index';
+import ProductItem from './ProductItem';
 
 import styles from './Products.module.css';
-import ProductItem from './ProductItem';
 
 const Products: React.FC<IProductsProps> = ({
 	title,

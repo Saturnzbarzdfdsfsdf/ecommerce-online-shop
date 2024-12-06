@@ -16,6 +16,7 @@
   flex-grow: 1;
 }
 
+/* user info */
 .user {
   display: flex;
   align-items: center;
@@ -38,6 +39,9 @@
   line-height: 12px;
   color: var(--grey);
 }
+/* user info */
+
+/* form */
 
 .form {
   display: flex;
@@ -75,6 +79,8 @@
   outline: none;
   width: 100%;
 }
+
+/* form */
 
 .account {
   display: flex;
@@ -126,7 +132,10 @@
   text-align: center;
   line-height: 16px;
 }
+  
 
+
+/* search bar */
 .box {
   z-index: 9;
   top: 120%;

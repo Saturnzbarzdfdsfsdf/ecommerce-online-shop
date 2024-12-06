@@ -28,10 +28,9 @@ const Home: React.FC = () => {
 	return (
 		<>
 			<Poster />
-			<Products products={list} amount={5} title='One' />
 			<Categories products={categories} amount={5} title='Two' />
-			{/* <Banner /> */}
-			<Products products={filtered} amount={5} title='Three' />
+			<Products products={list} amount={10} title='One' />
+			{/* <Products products={filtered} amount={5} title='Three' /> */}
 		</>
 	);
 };

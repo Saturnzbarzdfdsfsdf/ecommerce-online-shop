@@ -1,0 +1,22 @@
+.user {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--dark);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.username {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--grey);
+}
