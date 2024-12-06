@@ -7,7 +7,7 @@ import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
 import { Products } from '../../Products/index';
 
-import { Button } from '../../../shared/ui/button';
+import { Button } from '../../../shared/ui/Button';
 
 import styles from './Category.module.css';
 
@@ -23,13 +23,11 @@ interface FilterValues {
 	price_max: number;
 }
 
-
 interface QueryParams {
 	categoryId: string | undefined;
 	limit: number;
 	offset: number;
 }
-
 
 interface CategoriesState {
 	list: Array<{ id: string; name: string }>;
@@ -66,7 +64,6 @@ const Category: React.FC = () => {
 
 	const { data, isLoading, isSuccess } = useGetProductsQuery(params);
 
-
 	useEffect(() => {
 		if (!isLoading) return;
 		if (!Array.isArray(data)) return;
@@ -93,7 +90,6 @@ const Category: React.FC = () => {
 		}
 	}, [list, id]);
 
-	
 	const loadMoreProducts = () => {
 		setParams(prevParams => ({
 			...prevParams,
@@ -142,7 +138,6 @@ const Category: React.FC = () => {
 						value={values.price_max}
 						placeholder='0'
 					/>
-					
 				</div>
 				<button type='submit' hidden />
 			</form>

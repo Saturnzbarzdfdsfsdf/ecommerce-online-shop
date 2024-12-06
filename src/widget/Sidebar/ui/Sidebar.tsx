@@ -8,12 +8,6 @@ import SideCategoryItem from './SideCategoryItem';
 
 import styles from './Sidebar.module.css';
 
-// Определяем тип для категории
-interface Category {
-	id: string; // Или string, в зависимости от вашего API
-	name: string;
-}
-
 const Sidebar: React.FC = () => {
 	
 	const { list } = useSelector((state: RootState) => state.categories);
