@@ -9,6 +9,7 @@ interface IButton {
 	readonly disabled?: boolean;
 	/** Additional styles. */
 	readonly className?: string;
+	readonly type?: 'submit' | 'button' | 'reset' | undefined;
 
 	/** The function is executed when the button is pressed. */
 	readonly onClick?: () => void;
@@ -16,6 +17,7 @@ interface IButton {
 
 const Button: FC<IButton> = props => {
 	const {
+		type,
 		children,
 		disabled = false,
 		className,
@@ -24,7 +26,7 @@ const Button: FC<IButton> = props => {
 
 	return (
 		<button 
-		type='button' 
+		type={type} 
 		disabled={disabled}
 		onClick={onClick} 
 		className={className}

@@ -77,6 +77,7 @@ const Header: React.FC = () => {
 				/>
 
 				<CartIcon cartCount={cart} />
+				
 
 			</div>
 		</div>

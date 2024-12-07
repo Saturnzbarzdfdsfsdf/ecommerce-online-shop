@@ -1,3 +1,7 @@
+.errorMes {
+  color: red;
+}
+
 .form {
   margin-top: 24px;
   display: flex;

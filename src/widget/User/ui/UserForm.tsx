@@ -7,14 +7,14 @@ import { toggleForm, toggleFormType } from '../../../redux/user/userSlice';
 
 import { IUserState } from '../../../shared/types/index';
 
-import UserSignupForm from './UserSignup';
-import UserLoginForm from './UserLogin';
+import UserSignup from './UserSignup';
+import UserLogin from './UserLogin';
 
 import styles from './User.module.css';
 
 const formComponents = {
-	signup: UserSignupForm,
-	login: UserLoginForm,
+	signup: UserSignup,
+	login: UserLogin,
 };
 
 const UserForm: React.FC = () => {

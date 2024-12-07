@@ -6,6 +6,8 @@ import { createUser } from '../../../../redux/user/userSlice';
 import { useAppDispatch } from '../../../../redux/store';
 import { IUserFormProps, IFormUserValues } from '../../../../shared/types';
 
+import { Button } from '../../../../shared/ui/Button';
+
 import styles from '../UserComponentsForm.module.css';
 
 const UserSignupForm: React.FC<IUserFormProps> = ({
@@ -39,7 +41,9 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 						},
 					})}
 				/>
-				{errors.email && <div>{errors.email.message}</div>}
+				{errors.email && (
+					<div className={styles.errorMes}>{errors.email.message}</div>
+				)}
 			</div>
 
 			<div className={styles.group}>
@@ -49,7 +53,9 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 					autoComplete='off'
 					{...register('name', { required: 'Name is required' })}
 				/>
-				{errors.name && <div>{errors.name.message}</div>}
+				{errors.name && (
+					<div className={styles.errorMes}>{errors.name.message}</div>
+				)}
 			</div>
 
 			<div className={styles.group}>
@@ -57,9 +63,24 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 					type='password'
 					placeholder='Your password'
 					autoComplete='off'
-					{...register('password', { required: 'Password is required' })}
+					{...register('password', {
+						required: 'Password is required',
+						minLength: {
+							value: 6,
+							message: 'Password must be at least 6 characters long',
+						},
+						maxLength: {
+							value: 20,
+							message: 'Password cannot exceed 20 characters',
+						},
+						validate: value =>
+							/^(?=.*[A-Za-z])(?=.*\d)/.test(value) ||
+							'Password must contain both letters and numbers',
+					})}
 				/>
-				{errors.password && <div>{errors.password.message}</div>}
+				{errors.password && (
+					<div className={styles.errorMes}>{errors.password.message}</div>
+				)}
 			</div>
 
 			<div className={styles.group}>
@@ -71,7 +92,9 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 					defaultValue='https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'
 					{...register('avatar', { required: 'Avatar URL is required' })}
 				/>
-				{errors.avatar && <div>{errors.avatar.message}</div>}
+				{errors.avatar && (
+					<div className={styles.errorMes}>{errors.avatar.message}</div>
+				)}
 			</div>
 
 			<div
@@ -80,9 +103,9 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 			>
 				I already have an account
 			</div>
-			<button type='submit' className={styles.submit}>
+			<Button type='submit' className={styles.submit}>
 				Create an account
-			</button>
+			</Button>
 		</form>
 	);
 };

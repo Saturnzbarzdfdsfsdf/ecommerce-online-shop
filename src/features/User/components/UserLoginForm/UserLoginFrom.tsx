@@ -7,11 +7,12 @@ import { useAppDispatch } from '../../../../redux/store';
 import { loginUser } from '../../../../redux/user/userSlice';
 
 import { IUserFormProps, IFormUserValues } from '../../../../shared/types/index';
+import { Button } from '../../../../shared/ui/Button';
+
+import styles from '../UserComponentsForm.module.css';
 
 
 type TUserLogin = Pick<IFormUserValues, 'email' | 'password'>;
-
-import styles from '../UserComponentsForm.module.css';
 
 const UserLoginFrom: FC<IUserFormProps> = ({
 	closeForm,
@@ -44,6 +45,7 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 						},
 					})}
 				/>
+
 				{errors.email && <div>{errors.email.message}</div>}
 			</div>
 
@@ -54,7 +56,17 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 					autoComplete='off'
 					{...register('password', {
 						required: 'Password is required',
-					})}
+						minLength: {
+							value: 6,
+							message: 'Password must be at least 6 characters long',
+						},
+						maxLength: {
+							value: 20,
+							message: 'Password cannot exceed 20 characters',
+						},
+						validate: value => 
+              /^(?=.*[A-Za-z])(?=.*\d)/.test(value) || 'Password must contain both letters and numbers'
+          })}
 				/>
 				{errors.password && <div>{errors.password.message}</div>}
 			</div>
@@ -65,9 +77,9 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 			>
 				Create an account
 			</div>
-			<button type='submit' className={styles.submit}>
+			<Button type='submit' className={styles.submit}>
 				Login
-			</button>
+			</Button>
 		</form>
 	);
 };
