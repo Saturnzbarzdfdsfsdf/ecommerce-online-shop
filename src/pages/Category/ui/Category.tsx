@@ -11,11 +11,11 @@ import { Button } from '../../../shared/ui/Button';
 
 import styles from './Category.module.css';
 
-interface Product {
-	id: string;
-	name: string;
-	image: string;
-}
+// interface Product {
+// 	id: string;
+// 	name: string;
+// 	image: string;
+// }
 
 interface FilterValues {
 	title: string;
@@ -56,7 +56,7 @@ const Category: React.FC = () => {
 	const [title, setTitle] = useState<string>('');
 
 	// Пагинация
-	const [pagination, setPagination] = useState<Product[]>([]);
+	// const [pagination, setPagination] = useState<Product[]>([]);
 
 	const [values, setValues] = useState<FilterValues>(defaultValues);
 
@@ -68,9 +68,9 @@ const Category: React.FC = () => {
 		if (!isLoading) return;
 		if (!Array.isArray(data)) return;
 
-		const products = data as Product[];
+		// const products = data as Product[];
 
-		setPagination(pagination => [...pagination, ...products]);
+		// setPagination(pagination => [...pagination, ...products]);
 	}, [data, isLoading]);
 
 	useEffect(() => {

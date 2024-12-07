@@ -2,30 +2,19 @@ import React from 'react';
 
 import { createUser } from '../../../redux/user/userSlice';
 
-import styles from './User.module.css';
 import { useAppDispatch } from '../../../redux/store';
 
-// Определяем интерфейс для пропсов компонента
-interface UserSignupFormProps {
-	toggleCurrentFormType: (type: 'signup' | 'login') => void;
-	closeForm: () => void;
-}
+import { IUserFormProps, IFormUserValues } from '../../../shared/types';
 
-// Определяем интерфейс для значений формы
-interface FormValues {
-	name: string;
-	email: string;
-	password: string;
-	avatar: string;
-}
+import styles from './User.module.css';
 
-const UserSignupForm: React.FC<UserSignupFormProps> = ({
+const UserSignupForm: React.FC<IUserFormProps> = ({
 	toggleCurrentFormType,
 	closeForm,
 }) => {
 	const dispatch = useAppDispatch();
 
-	const [values, setValue] = React.useState<FormValues>({
+	const [values, setValue] = React.useState<IFormUserValues>({
 		name: '',
 		email: '',
 		password: '',
@@ -79,7 +68,7 @@ const UserSignupForm: React.FC<UserSignupFormProps> = ({
 					<input
 						onChange={handleChange}
 						value={values.name}
-						type='text' // Исправлено на 'text' вместо 'name'
+						type='text'
 						name='name'
 						placeholder='Your name'
 						autoComplete='off'
@@ -103,7 +92,7 @@ const UserSignupForm: React.FC<UserSignupFormProps> = ({
 					<input
 						onChange={handleChange}
 						value={values.avatar}
-						type='text' // Исправлено на 'text' вместо 'avatar'
+						type='text'
 						name='avatar'
 						placeholder='Your avatar'
 						autoComplete='off'

@@ -1,53 +1,50 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../redux/store';
 
 import { toggleForm, toggleFormType } from '../../../redux/user/userSlice';
 
-import UserSignupForm from './UserSignupForm';
-import UserLoginForm from './UserLoginForm ';
+import { IUserState } from '../../../shared/types/index';
+
+import UserSignupForm from './UserSignup';
+import UserLoginForm from './UserLogin';
 
 import styles from './User.module.css';
-import { useAppDispatch } from '../../../redux/store';
 
-interface UserState {
-	showForm: boolean;
-	formType: 'signup' | 'login';
-}
+const formComponents = {
+	signup: UserSignupForm,
+	login: UserLoginForm,
+};
 
 const UserForm: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	const { showForm, formType } = useSelector(
-		(state: { user: UserState }) => state.user
+		(state: { user: IUserState }) => state.user
 	);
 
-	const closeForm = () => dispatch(toggleForm(false));
-	
+	const onClickCloseForm = () => dispatch(toggleForm(false));
+
 	const toggleCurrentFormType = (type: 'signup' | 'login') =>
 		dispatch(toggleFormType(type));
 
-	return showForm ? (
-		<>
-			<div 
-			onClick={closeForm}
-			className={styles.overlay} 
-			>
-			</div>
+	if (!showForm) return null;
 
-			{formType === 'signup' ? (
-				<UserSignupForm
-					toggleCurrentFormType={toggleCurrentFormType}
-					closeForm={closeForm}
-				/>
-			) : (
-				<UserLoginForm
-					toggleCurrentFormType={toggleCurrentFormType}
-					closeForm={closeForm}
-				/>
-			)}
+	const FormComponent = formComponents[formType];
+
+	return (
+		<>
+			<div onClick={onClickCloseForm} className={styles.overlay}></div>
+
+			<FormComponent
+				toggleCurrentFormType={toggleCurrentFormType}
+				closeForm={onClickCloseForm}
+			/>
+
 		</>
-	) : null;
+	);
 };
+
 
 export default UserForm;

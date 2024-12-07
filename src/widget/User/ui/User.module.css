@@ -48,6 +48,17 @@
   line-height: 20px;
 }
 
+.link {
+  font-size: 13px;
+  color: var(--dark-sea);
+  cursor: pointer;
+  text-align: center;
+}
+
+.link:hover {
+  color: var(--light);
+}
+
 .close {
   position: absolute;
   top: 14px;
@@ -64,17 +75,6 @@
 
 .close:hover svg {
   stroke: #fff;
-}
-
-.link {
-  font-size: 13px;
-  color: var(--dark-sea);
-  cursor: pointer;
-  text-align: center;
-}
-
-.link:hover {
-  color: var(--light);
 }
 
 /* .icon {

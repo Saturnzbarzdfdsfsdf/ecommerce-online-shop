@@ -1,36 +1,29 @@
 import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../../redux/store';
+
 import { Link, useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '../../../shared/consts/routes';
 import { toggleForm } from '../../../redux/user/userSlice';
 
 import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
 import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index'
 
-import { useAppDispatch } from '../../../redux/store';
+
+import { ROUTES } from '../../../shared/consts/routes';
+
+import { IUser } from '../../../shared/types';
 
 import LOGO from '../../../shared/assets/img/logo.svg';
 import AVATAR from '../../../shared/assets/img/avatar.jpg';
 
 import styles from './Header.module.css';
 
-interface User {
-	name: string;
-	avatar: string;
-}
-
-// interface Product {
-// 	id: string;
-// 	title: string;
-// 	images: string[];
-// }
-
 interface RootState {
 	user: {
-		currentUser: User | null;
+		currentUser: IUser | null;
 		cart: Array<{ id: string; quantity?: number }>;
 	};
 }
@@ -40,11 +33,12 @@ const Header: React.FC = () => {
 	const navigate = useNavigate();
 
 	const [searchValue, setSearchValue] = useState<string>('');
+
 	const { data = [], isLoading } = useGetProductsQuery({ title: searchValue });
 
 	const { currentUser, cart } = useSelector((state: RootState) => state.user);
 	
-	const [values, setValues] = useState<User>({
+	const [values, setValues] = useState<IUser>({
 		name: 'Guest',
 		avatar: AVATAR,
 	});
@@ -63,11 +57,6 @@ const Header: React.FC = () => {
 		}
 	}
 
-	// Следит за input
-	// const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setSearchValue(event.target.value);
-	// };
-
 	return (
 		<div className={styles.header}>
 			<div className={styles.logo}>
@@ -77,6 +66,7 @@ const Header: React.FC = () => {
 			</div>
 
 			<div className={styles.info}>
+
 				<UserInfo user={values} onProfileClick={onProfileClick} />
 
 				<SearchBar
