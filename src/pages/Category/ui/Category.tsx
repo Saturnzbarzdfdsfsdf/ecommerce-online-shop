@@ -59,7 +59,6 @@ const Category: React.FC = () => {
 	// const [pagination, setPagination] = useState<Product[]>([]);
 
 	const [values, setValues] = useState<FilterValues>(defaultValues);
-
 	const [params, setParams] = useState<QueryParams>(defaultParams);
 
 	const { data, isLoading, isSuccess } = useGetProductsQuery(params);

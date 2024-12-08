@@ -10,7 +10,7 @@ export interface IProductsProps {
 	title?: string
 	style?: React.CSSProperties
 	products?: IProduct[]
-	amount: number
+	amount?: number
 }
 
 
