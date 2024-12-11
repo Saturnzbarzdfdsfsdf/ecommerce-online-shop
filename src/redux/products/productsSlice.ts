@@ -4,16 +4,6 @@ import { shuffle } from '../../shared/consts/common';
 import { BASE_URL } from '../../shared/consts/baseUrl';
 import { IProduct } from '../../shared/types/productsTypes';
 
-// interface IProduct {
-// 	id: string;
-// 	name: string;
-// 	price: number;
-// 	image: string[];
-// 	category: {
-// 		id: string;
-// 		name: string;
-// 	};
-// }
 
 interface ProductsState {
 	list: IProduct[];

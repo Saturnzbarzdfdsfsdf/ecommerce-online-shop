@@ -13,7 +13,7 @@ export interface IProductsProps {
 	amount?: number
 }
 
-
+// убрать
 export interface IProduct {
 	id: string;
 	images: string[];
