@@ -17,6 +17,7 @@ import { ROUTES } from '../../../shared/consts/routes';
 import { IUser } from '../../../shared/types';
 
 import LOGO from '../../../shared/assets/img/logo.svg';
+
 import AVATAR from '../../../shared/assets/img/avatar.jpg';
 
 import styles from './Header.module.css';
@@ -61,7 +62,7 @@ const Header: React.FC = () => {
 		<div className={styles.header}>
 			<div className={styles.logo}>
 				<Link to={ROUTES.HOME}>
-					<img src={LOGO} alt='logo' />
+					<img className={styles.logoImg} src={LOGO} alt='logo' />
 				</Link>
 			</div>
 

@@ -8,8 +8,6 @@ import { Products } from '../../Products/index';
 import { Categories } from '../../Categories/index';
 import { Poster } from '../../../widget/Poster/index';
 
-// import ProductPagination from '../../../widget/Pagination/ProductPagination';
-
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -30,9 +28,13 @@ const Home: React.FC = () => {
 	return (
 		<>
 			<Poster />
+			
 			<Categories products={categories} amount={5} title='Two' /> 
+			
 			<Products products={list} amount={10} title='One' />
+
 			{/* <ProductPagination products={list} /> */}
+			
 			{/* <Products products={filtered} amount={5} title='Three' /> */}
 		</>
 	);
