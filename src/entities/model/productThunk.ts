@@ -7,20 +7,23 @@ export const fetchProducts = createAsyncThunk<
 	{ products: IProduct[]; totalPages: number }, // при успешном запросе вернется obj
 	string,
 	{ readonly rejectValue: RejectedDataType } // Вернется в случае ошибки
->('products/fetchProducts', async (_, thunkAPI) => {
-	const limit = 10;
-	// const offset = (parseInt(page) - 1) * limit; // опционально
+>('products/fetchProducts', async (page, thunkAPI) => {
+	
+	const limitProduct = 5;
+	const offset = (parseInt(page) - 1) * limitProduct; 
 
 	try {
-		const response = await getProducts(limit);
+
+		const response = await getProducts(offset, limitProduct);
+
 		return response;
+
 	} catch (err: unknown) {
 		const knownError = err as ErrorType;
 
 		return thunkAPI.rejectWithValue({
 			messageError: knownError.message,
-			status: knownError.response?.status, 
-			// Статус ответа от сервера (есть доступен)
+			status: knownError.response?.status,
 		});
 	}
 });

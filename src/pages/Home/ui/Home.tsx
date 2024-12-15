@@ -1,41 +1,69 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
-import { RootState } from '../../../redux/store';
+import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-import { filteredByPrice } from '../../../redux/products/productsSlice';
+import { RootState } from '../../../app/store';
 
+import { fetchCategories } from '../../../redux/categories/categoriesSlice';
+import { fetchProducts } from '../../../entities/model/productThunk';
+
+// selectors
+import {
+	selectProducts,
+	// selectFilteredProducts,
+	selectCurrentPage,
+} from '../../../entities/model/selectors';
+
+// components
 import { Products } from '../../Products/index';
 import { Categories } from '../../Categories/index';
 import { Poster } from '../../../widget/Poster/index';
+import { Pagination } from '@mui/material';
+import { setCurrentPage } from '../../../entities/model/productsSlice';
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
 
-	const { list, filtered, categories } = useSelector((state: RootState) => ({
-		list: state.products.list,
-		filtered: state.products.filtered,
+	const { categories } = useSelector((state: RootState) => ({
 		categories: state.categories.list,
 	}));
 
-	useEffect(() => {
-		if (list.length > 0 && filtered.length === 0) {
-			dispatch(filteredByPrice(50));
-		}
-	}, [dispatch, list.length, filtered.length]);
+	const products = useSelector(selectProducts);
 
+	const currentPage = useSelector(selectCurrentPage);
+
+	useEffect(() => {
+		dispatch(fetchCategories());
+		dispatch(fetchProducts(currentPage.toString()));
+	}, [dispatch, currentPage]);
+
+	const handlePageChange = (
+		event: React.ChangeEvent<unknown>,
+		value: number
+	) => {
+		dispatch(setCurrentPage(value));
+		dispatch(fetchProducts(value.toString()));
+	};
 	return (
 		<>
 			<Poster />
 
-			<Categories products={categories} amount={5} title='Two' />
+			<Categories products={categories} amount={5} title='Categories' />
 
-			<Products products={list} amount={10} title='One' />
+			<Products
+				title='Products'
+				currentPage={currentPage}
+				products={products}
+			/>
 
-			{/* <ProductPagination products={list} /> */}
-
-			{/* <Products products={filtered} amount={5} title='Three' /> */}
+			<Pagination
+				count={products.length}
+				page={currentPage}
+				onChange={handlePageChange}
+				variant='outlined'
+				color='primary'
+			/>
 		</>
 	);
 };

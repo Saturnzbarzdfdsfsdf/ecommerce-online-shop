@@ -1,5 +1,7 @@
+import { IProduct } from '../../shared/api/product/index';
+
 export interface IProductItem {
-	id: string;
+	id: number;
 	images: string[];
 	title: string;
 	price: number;
@@ -7,20 +9,9 @@ export interface IProductItem {
 }
 
 export interface IProductsProps {
-	title?: string
-	style?: React.CSSProperties
-	products?: IProduct[]
-	amount?: number
-}
-
-// убрать
-export interface IProduct {
-	id: string;
-	images: string[];
-	title: string;
-	price: number;
-	category: {
-		id: string;
-		name: string;
-	};
+	title?: string;
+	style?: React.CSSProperties;
+	products?: IProduct[];
+	amount?: number;
+	currentPage: number;
 }

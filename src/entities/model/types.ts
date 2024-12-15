@@ -1,4 +1,4 @@
-// import { IProducts } from '../../shared/api/product/index';
+import { IProduct } from '../../shared/api/product/index';
 
 export interface IProductsState {
 	products: IProduct[];
@@ -6,16 +6,6 @@ export interface IProductsState {
 	totalPages: number;
 	loading: boolean;
 	error: string | null;
-}
-
-// убрать
-export interface IProduct {
-	id: string;
-	images: string[];
-	title: string;
-	price: number;
-	category: {
-		id: string;
-		name: string;
-	};
+	filtered: IProduct[]; 
+	related: IProduct[]; 
 }

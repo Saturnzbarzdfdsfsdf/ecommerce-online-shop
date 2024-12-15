@@ -1,6 +1,6 @@
 interface ICategory {
 	readonly category: {
-		id: number;
+		id?: number;
 		name?: string;
 		image: string;
 	};

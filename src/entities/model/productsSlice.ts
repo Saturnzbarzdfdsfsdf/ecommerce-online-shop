@@ -2,12 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchProducts } from './productThunk';
 
-import { IProducts } from '../../shared/api/product/index';
+import { shuffle } from '../../shared/consts/common';
 
+import { IProduct } from '../../shared/api/product/index';
 import { IProductsState } from './types';
 
 const initialState: IProductsState = {
 	products: [],
+	filtered: [],
+	related: [],
+	
 	currentPage: 1,
 	totalPages: 0,
 	loading: false,
@@ -18,12 +22,23 @@ const productsSlice = createSlice({
 	name: 'product',
 	initialState,
 	reducers: {
+		setLoading(state, action: PayloadAction<boolean>) {
+			state.loading = action.payload;
+		},
 		setCurrentPage(state, action: PayloadAction<number>) {
 			state.currentPage = action.payload;
 			state.loading = true;
 		},
-		setLoading(state, action: PayloadAction<boolean>) {
-			state.loading = action.payload;
+		setRelatedProducts(state, action: PayloadAction<string>) {
+			const list = state.products.filter(
+				item => item.category && item.category.id === action.payload
+			);
+			state.related = shuffle(list);
+		},
+		filterProductsByPrice(state, action: PayloadAction<number>) {
+			state.filtered = state.products.filter(
+				({ price }) => price < action.payload
+			);
 		},
 	},
 	extraReducers: builder => {
@@ -36,7 +51,7 @@ const productsSlice = createSlice({
 				fetchProducts.fulfilled,
 				(
 					state,
-					action: PayloadAction<{ products: IProducts[]; totalPages: number }>
+					action: PayloadAction<{ products: IProduct[]; totalPages: number }>
 				) => {
 					state.products = action.payload;
 					state.totalPages = action.payload;
@@ -52,6 +67,11 @@ const productsSlice = createSlice({
 	},
 });
 
-export const { setCurrentPage, setLoading } = productsSlice.actions;
+export const {
+	setCurrentPage,
+	setLoading,
+	filterProductsByPrice,
+	setRelatedProducts,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

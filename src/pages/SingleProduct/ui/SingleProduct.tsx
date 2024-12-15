@@ -1,57 +1,63 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useGetProductQuery } from '../../../redux/api/apiSlice';
+
+import { ROUTES } from '../../../shared/consts/routes';
+
+import {
+	selectProducts,
+	selectRelatedProducts,
+} from '../../../entities/model/selectors';
+
+import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
-import { useNavigate, useParams } from 'react-router-dom'
 
-import { useGetProductQuery } from '../../../redux/api/apiSlice'
-import { getRelatedProducts } from '../../../redux/products/productsSlice'
-
-import { ROUTES } from '../../../shared/consts/routes'
-
-import { Product } from '../../Product/index'
-import { Products } from '../../Products/index'
+import { Product } from '../../Product/index';
+import { Products } from '../../Products/index';
+import { setRelatedProducts } from '../../../entities/model/productsSlice';
 
 const SingleProduct: React.FC = () => {
-	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { id } = useParams<{ id: string }>();
 
-	const { id } = useParams<{ id: string }>()
+	const relatedProducts = useSelector(selectRelatedProducts);
+	const products = useSelector(selectProducts);
 
-	const { list, related } = useSelector((state: RootState) => ({
-		list: state.products.list,
-		related: state.products.related,
-	}))
-
-	const { data, isLoading, isFetching, isSuccess } = useGetProductQuery({ id })
+	const { data, isLoading, isFetching, isSuccess } = useGetProductQuery({ id });
 
 	useEffect(() => {
-		if (data && list.length) {
-			dispatch(getRelatedProducts(data.category.id))
+		if (data && products.length) {
+			dispatch(setRelatedProducts(data.category.id));
 		}
-	}, [data, dispatch, list.length])
+	}, [data, dispatch, products.length]);
 
 	useEffect(() => {
 		if (!isFetching && !isLoading && !isSuccess) {
-			navigate(ROUTES.HOME)
+			navigate(ROUTES.HOME);
 		}
-	}, [isLoading, isFetching, isSuccess, navigate])
+	}, [isLoading, isFetching, isSuccess, navigate]);
 
 	if (isLoading || isFetching) {
 		return (
 			<section className='preloader'>
 				<div className='spinner'>Loading...</div>
 			</section>
-		)
+		);
 	}
 
 	return (
 		<>
 			<Product {...data} />
-			<Products products={related} amount={5} title='Related Products' />
+			<Products
+				products={relatedProducts}
+				amount={5}
+				title='Related Products'
+			/>
 		</>
-	)
-}
+	);
+};
 
-export default SingleProduct
+export default SingleProduct;

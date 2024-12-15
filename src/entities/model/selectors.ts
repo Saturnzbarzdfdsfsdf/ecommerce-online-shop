@@ -2,10 +2,13 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '../../app/store';
 
-const selectProducts = (state: RootState) => state.product.products;
-const selectLoading = (state: RootState) => state.product.loading;
-const selectCurrentPage = (state: RootState) => state.product.currentPage;
-const selectTotalPages = (state: RootState) => state.product.totalPages;
+const selectProducts = (state: RootState) => state.products.products;
+const selectLoading = (state: RootState) => state.products.loading;
+const selectCurrentPage = (state: RootState) => state.products.currentPage;
+const selectTotalPages = (state: RootState) => state.products.totalPages;
+const selectRelatedProducts = (state: RootState) => state.products.related;
+const selectFilterProductsByPrice = (state: RootState) =>
+	state.products.filtered;
 
 // Мемоизированный селектор
 const selectFilteredProducts = createSelector(
@@ -22,5 +25,7 @@ export {
 	selectLoading,
 	selectCurrentPage,
 	selectTotalPages,
+	selectRelatedProducts,
+	selectFilterProductsByPrice,
 	selectFilteredProducts,
 };

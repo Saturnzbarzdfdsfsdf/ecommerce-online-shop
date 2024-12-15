@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom';
 
-// import { IProduct } from '../../shared/types/index';
-
-import { IProducts } from '../../shared/api/product/index';
+import { IProduct } from '../../shared/api/product/index';
 
 import styles from './ProductCard.module.css';
 
-const ProductCard: React.FC<IProducts> = ({
+const ProductCard: React.FC<IProduct> = ({
 	id,
 	images,
 	title,
