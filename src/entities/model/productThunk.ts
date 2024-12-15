@@ -19,7 +19,8 @@ export const fetchProducts = createAsyncThunk<
 
 		return thunkAPI.rejectWithValue({
 			messageError: knownError.message,
-			status: knownError.response?.status, // Статус ответа от сервера (есть доступен)
+			status: knownError.response?.status, 
+			// Статус ответа от сервера (есть доступен)
 		});
 	}
 });

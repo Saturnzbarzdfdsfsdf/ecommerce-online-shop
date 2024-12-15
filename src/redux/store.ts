@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // Импорт срезов (slices)
+
 import categoriesSlice from './categories/categoriesSlice';
 import productsSlice from './products/productsSlice';
 import userSlice from './user/userSlice';
