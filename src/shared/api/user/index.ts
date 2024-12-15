@@ -1,3 +1,7 @@
-export { createUserRequest } from './userApi';
+export {
+	apiCreateUserRequest,
+	apiUpdateUserRequest,
+	apiLoginRequest,
+} from './userApi';
 
-export {type IUser } from './userTypes'
+export { type IUser, type IUserState } from './userTypes';

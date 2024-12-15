@@ -4,8 +4,28 @@ import { IUser } from './index';
 
 const USERS_ENDPOINT = 'users';
 
-export const createUserRequest = async (
-  payload: IUser): Promise<{ user: IUser }> => {
-    
-	return await apiPost<{ user: IUser }, IUser>(`${USERS_ENDPOINT}`, payload);
+// Функция для созданию Юзера
+export const apiCreateUserRequest = async (
+	payload: IUser
+): Promise<{ user: IUser }> => {
+  
+	return await apiPost<{ user: IUser }, 
+  IUser>(`${USERS_ENDPOINT}`, payload);
+};
+
+// Функция для логина
+export const apiLoginRequest = async (
+    payload: { email: string; password: string }
+): Promise<{ token: string }> => {
+
+    return await apiPost<{ token: string }, { email: string; password: string }>('login', payload);
+};
+
+// Функция для обновления пользователя
+export const apiUpdateUserRequest = async (
+    id: string,
+    data: Partial<IUser>
+): Promise<{ user: IUser }> => {
+
+    return await apiPost<{ user: IUser }, Partial<IUser>>(`users/${id}`, data);
 };
