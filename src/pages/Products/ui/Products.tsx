@@ -6,27 +6,15 @@ import { ProductCard } from '../../../entities/index';
 
 import styles from './Products.module.css';
 
-const Products: React.FC<IProductsProps> = ({
-	title,
-	style = {},
-	products = [],
-}) => {
+const Products: React.FC<IProductsProps> = ({ title, products }) => {
 	return (
-		<section className={styles.products} style={style}>
+		<section className={styles.products}>
 			{title && <h2>{title}</h2>}
 
 			<div className={styles.list}>
-				{products.map(({ id, images = [], title, category, price }) => (
-					<ProductCard
-						key={id}
-						id={id}
-						images={images}
-						title={title}
-						category={category}
-						price={price}
-					/>
+				{products.map(product => (
+					<ProductCard key={product.id} product={product} />
 				))}
-				<div className='pagination__box'></div>
 			</div>
 		</section>
 	);

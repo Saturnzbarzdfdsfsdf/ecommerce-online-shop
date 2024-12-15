@@ -1,9 +1,7 @@
-interface ICategory {
-	readonly category: {
-		id?: number;
-		name?: string;
-		image: string;
-	};
+export interface ICategory {
+	readonly id?: number;
+	readonly name?: string;
+	readonly image: string;
 }
 
 export interface IProduct {
@@ -13,4 +11,8 @@ export interface IProduct {
 	readonly images?: string[];
 	readonly description?: string;
 	readonly category?: ICategory;
+}
+
+export interface IProductCard {
+	product: IProduct;
 }

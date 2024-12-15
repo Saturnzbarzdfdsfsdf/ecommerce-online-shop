@@ -45,6 +45,7 @@ const Home: React.FC = () => {
 		dispatch(setCurrentPage(value));
 		dispatch(fetchProducts(value.toString()));
 	};
+	
 	return (
 		<>
 			<Poster />
@@ -53,10 +54,9 @@ const Home: React.FC = () => {
 
 			<Products
 				title='Products'
-				currentPage={currentPage}
 				products={products}
 			/>
-
+	
 			<Pagination
 				count={products.length}
 				page={currentPage}
