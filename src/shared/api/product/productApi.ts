@@ -1,11 +1,11 @@
 import { apiGet } from '../base';
 
-import { IProduct } from './types';
+import { IProduct } from './productTypes';
 
 const PRODUCTS_ENDPOINT = 'products';
 
 export const getProducts = async (
-	offset: number, //offset=10 API пропустит первые 10 опционально
+	offset: number,
 	limitProduct: number
 ): Promise<{ products: IProduct[]; totalPages: number }> => {
 	return await apiGet(

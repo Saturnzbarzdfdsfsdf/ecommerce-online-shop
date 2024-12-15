@@ -21,3 +21,17 @@ export const apiGet = async <T>(
 	const response: AxiosResponse<T> = await axiosInstance.get(endpoint, options);
 	return response.data;
 };
+
+// Асинхронная функция для выполнения Post-запросов
+export const apiPost = async <T, U>(
+	endpoint: string,
+	data: U,
+	options: AxiosRequestConfig = {} // Конфигурация запроса
+): Promise<T> => {
+	const response: AxiosResponse<T> = await axiosInstance.post(
+		endpoint,
+		data,
+		options
+	);
+	return response.data;
+};

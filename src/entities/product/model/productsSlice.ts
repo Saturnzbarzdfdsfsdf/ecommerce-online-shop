@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchProducts } from './productThunk';
 
-import { shuffle } from '../../shared/consts/common';
+import { shuffle } from '../../../shared/consts/common';
 
-import { IProduct } from '../../shared/api/product/index';
+import { IProduct } from '../../../shared/api/product/index';
 import { IProductsState } from './types';
 
 const initialState: IProductsState = {
@@ -29,7 +29,7 @@ const productsSlice = createSlice({
 			state.currentPage = action.payload;
 			state.loading = true;
 		},
-		setRelatedProducts(state, action: PayloadAction<string>) {
+		setRelatedProducts(state, action: PayloadAction<number>) {
 			const list = state.products.filter(
 				item => item.category && item.category.id === action.payload
 			);
@@ -54,7 +54,7 @@ const productsSlice = createSlice({
 					action: PayloadAction<{ products: IProduct[]; totalPages: number }>
 				) => {
 					state.products = action.payload;
-					state.totalPages = action.payload;
+					// state.totalPages = action.payload;
 					state.loading = false;
 				}
 			)

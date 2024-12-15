@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // Импорт срезов (slices)
-import productsSlice from '../entities/model/productsSlice';
+import productsSlice from '../entities/product/model/productsSlice';
 
-// import productsSlice from '../redux/products/productsSlice';
 import categoriesSlice from '../redux/categories/categoriesSlice';
 import userSlice from '../redux/user/userSlice';
 

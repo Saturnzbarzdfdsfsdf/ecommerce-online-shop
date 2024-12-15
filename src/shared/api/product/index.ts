@@ -1,3 +1,7 @@
 export { getProducts } from './productApi';
 
-export { type IProduct, type ICategory, type IProductCard } from './types';
+export {
+	type IProduct,
+	type ICategory,
+	type IProductCard,
+} from './productTypes';

@@ -6,15 +6,15 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 import { RootState } from '../../../app/store';
 
 import { fetchCategories } from '../../../redux/categories/categoriesSlice';
-import { fetchProducts } from '../../../entities/model/productThunk';
-import { setCurrentPage } from '../../../entities/model/productsSlice';
+import { fetchProducts } from '../../../entities/product/model/productThunk';
+import { setCurrentPage } from '../../../entities/product/model/productsSlice';
 
 // selectors
 import {
 	selectProducts,
 	// selectFilteredProducts,
 	selectCurrentPage,
-} from '../../../entities/model/selectors';
+} from '../../../entities/product/model/selectors';
 
 // components
 import { Products } from '../../Products/index';

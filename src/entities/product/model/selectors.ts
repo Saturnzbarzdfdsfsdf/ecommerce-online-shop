@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { RootState } from '../../app/store';
+import { RootState } from '../../../app/store';
 
 const selectProducts = (state: RootState) => state.products.products;
 const selectLoading = (state: RootState) => state.products.loading;

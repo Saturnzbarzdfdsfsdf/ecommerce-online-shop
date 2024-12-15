@@ -9,14 +9,14 @@ import { ROUTES } from '../../../shared/consts/routes';
 import {
 	selectProducts,
 	selectRelatedProducts,
-} from '../../../entities/model/selectors';
+} from '../../../entities/product/model/selectors';
 
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { Product } from '../../Product/index';
 import { Products } from '../../Products/index';
-import { setRelatedProducts } from '../../../entities/model/productsSlice';
+import { setRelatedProducts } from '../../../entities/product/model/productsSlice';
 
 const SingleProduct: React.FC = () => {
 	const navigate = useNavigate();
@@ -51,11 +51,7 @@ const SingleProduct: React.FC = () => {
 	return (
 		<>
 			<Product {...data} />
-			<Products
-				products={relatedProducts}
-				amount={5}
-				title='Related Products'
-			/>
+			<Products title='Related Products' products={relatedProducts} />
 		</>
 	);
 };

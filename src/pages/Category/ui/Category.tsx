@@ -149,12 +149,7 @@ const Category: React.FC = () => {
 					<button>Reset</button>
 				</div>
 			) : (
-				<Products
-					title=''
-					products={data}
-					style={{ padding: 0 }}
-					amount={data.length}
-				/>
+				<Products title='' products={data} />
 			)}
 
 			<div className={styles.more}>

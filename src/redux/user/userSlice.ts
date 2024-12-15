@@ -25,7 +25,7 @@ export const createUser = createAsyncThunk<User, Partial<User>>(
 	async (payload, thunkApi) => {
 		try {
 			const res = await axios.post(`${BASE_URL}/users`, payload);
-			console.log('response create', res);
+
 			return res.data;
 		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {

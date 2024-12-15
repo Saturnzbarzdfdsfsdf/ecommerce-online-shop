@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { IProductCard } from '../../shared/api/product/index';
+import { IProductCard } from '../../../shared/api/product/index';
 
 import styles from './ProductCard.module.css';
 

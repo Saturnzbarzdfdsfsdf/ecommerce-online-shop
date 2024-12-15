@@ -1,4 +1,4 @@
-import { IProduct } from '../../shared/api/product/index';
+import { IProduct } from '../../../shared/api/product/index';
 
 export interface IProductsState {
 	products: IProduct[];

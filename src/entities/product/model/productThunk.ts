@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getProducts, IProduct } from '../../shared/api/product';
-import { ErrorType, RejectedDataType } from '../../shared/types/index';
+import { getProducts, IProduct } from '../../../shared/api/product';
+import { ErrorType, RejectedDataType } from '../../../shared/types/index';
 
 export const fetchProducts = createAsyncThunk<
 	{ products: IProduct[]; totalPages: number }, // при успешном запросе вернется obj
