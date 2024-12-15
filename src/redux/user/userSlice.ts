@@ -120,12 +120,10 @@ const userSlice = createSlice({
 	reducers: {
 		addItemToCart: (
 			state,
-			{
-				payload,
-			}: PayloadAction<{ id: string; quantity?: number;}>
+			{ payload }: PayloadAction<{ id: string; quantity?: number }>
 		) => {
 			let newCart = [...state.cart];
-			
+
 			const existingItem = state.cart.find(item => item.id === payload.id);
 
 			if (existingItem) {

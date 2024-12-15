@@ -1,4 +1,4 @@
-import { apiPost } from '../base';
+import { apiPost, apiGet } from '../base';
 
 import { IUser } from './index';
 
@@ -22,6 +22,16 @@ export const apiLoginRequest = async (payload: {
 		{ token: string; user: IUser },
 		{ email: string; password: string }
 	>('login', payload);
+};
+
+// Функция для выполнения запроса на получение профиля
+export const apiGetProfileRequest = async (token: string): Promise<IUser> => {
+    const response = await apiGet<IUser>('profile', {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response;
 };
 
 // Функция для обновления пользователя

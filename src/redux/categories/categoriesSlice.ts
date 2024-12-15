@@ -68,6 +68,6 @@ const categoriesSlice = createSlice({
 	},
 });
 
-// Экспортируем reducers и действия (если есть)
+
 export default categoriesSlice.reducer;
 

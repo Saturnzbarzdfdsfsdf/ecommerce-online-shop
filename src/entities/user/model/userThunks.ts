@@ -4,6 +4,7 @@ import {
 	apiCreateUserRequest,
 	apiLoginRequest,
 	apiUpdateUserRequest,
+	apiGetProfileRequest,
 	IUser,
 } from '../../../shared/api/user/index';
 
@@ -37,9 +38,12 @@ export const loginUserThunk = createAsyncThunk<
 	{ readonly rejectValue: RejectedDataType }
 >('users/loginUser', async (payload, thunkAPI) => {
 	try {
-		const response = await apiLoginRequest(payload);
 
-		return response;
+		const response = await apiLoginRequest(payload);
+		const userProfile = await apiGetProfileRequest(response.token);
+		
+		return { token: response.token, user: userProfile };
+		
 	} catch (err) {
 		return thunkAPI.rejectWithValue(handleError(err));
 	}
