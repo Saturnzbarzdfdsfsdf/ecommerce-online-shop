@@ -14,11 +14,14 @@ export const apiCreateUserRequest = async (
 };
 
 // Функция для логина
-export const apiLoginRequest = async (
-    payload: { email: string; password: string }
-): Promise<{ token: string }> => {
-
-    return await apiPost<{ token: string }, { email: string; password: string }>('login', payload);
+export const apiLoginRequest = async (payload: {
+	email: string;
+	password: string;
+}): Promise<{ token: string; user: IUser }> => {
+	return await apiPost<
+		{ token: string; user: IUser },
+		{ email: string; password: string }
+	>('login', payload);
 };
 
 // Функция для обновления пользователя

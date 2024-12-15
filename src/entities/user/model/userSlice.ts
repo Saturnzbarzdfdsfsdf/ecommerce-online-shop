@@ -2,24 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IUserState, IUser } from '../../../shared/api/user/index';
 
-import { 
-	createUserThunk,
-	updateUserThunk, 
-	loginUserThunk 
-} from './userThunks';
+import { createUserThunk, updateUserThunk, loginUserThunk } from './userThunks';
 
 // Функция для добавления текущего пользователя в состояние
-const addCurrentUser = (
+const updateCurrentUser = (
 	state: IUserState,
-	{ payload }: PayloadAction<IUser>
+	action: PayloadAction<{ user: IUser }>
 ) => {
-	state.currentUser = payload;
+	state.currentUser = action.payload.user;
 };
 
-// Начальное состояние
 const initialState: IUserState = {
-	currentUser: null,
 	cart: [],
+	currentUser: null,
 	isLoading: false,
 	showForm: false,
 	formType: 'signup',
@@ -61,9 +56,9 @@ const userSlice = createSlice({
 		},
 	},
 	extraReducers: builder => {
-		builder.addCase(createUserThunk.fulfilled, addCurrentUser);
-		builder.addCase(loginUserThunk.fulfilled, addCurrentUser);
-		builder.addCase(updateUserThunk.fulfilled, addCurrentUser);
+		builder.addCase(createUserThunk.fulfilled, updateCurrentUser);
+		builder.addCase(loginUserThunk.fulfilled, updateCurrentUser);
+		builder.addCase(updateUserThunk.fulfilled, updateCurrentUser);
 	},
 });
 

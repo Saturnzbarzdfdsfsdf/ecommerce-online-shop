@@ -32,7 +32,7 @@ export const createUserThunk = createAsyncThunk<
 });
 
 export const loginUserThunk = createAsyncThunk<
-	{ token: string },
+	{ token: string; user: IUser },
 	{ email: string; password: string },
 	{ readonly rejectValue: RejectedDataType }
 >('users/loginUser', async (payload, thunkAPI) => {
