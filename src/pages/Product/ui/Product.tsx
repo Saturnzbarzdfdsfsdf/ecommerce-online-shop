@@ -2,7 +2,7 @@ import { useState, FC, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../redux/store';
+import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 import { addItemToCart } from '../../../redux/user/userSlice';
 
 import { ROUTES } from '../../../shared/consts/routes';

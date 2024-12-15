@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../redux/store';
+import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { Link, useNavigate } from 'react-router-dom';
 

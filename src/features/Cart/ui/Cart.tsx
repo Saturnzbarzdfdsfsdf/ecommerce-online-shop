@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../redux/store';
+import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { sumBy } from '../../../shared/consts/common';
 

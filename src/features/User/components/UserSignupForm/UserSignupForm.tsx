@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import { createUser } from '../../../../redux/user/userSlice';
 
-import { useAppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
 import { IUserFormProps, IFormUserValues } from '../../../../shared/types';
 
 import { Button } from '../../../../shared/ui/Button';

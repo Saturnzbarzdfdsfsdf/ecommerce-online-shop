@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from '../../../redux/store'
+import { RootState } from '../../../redux/store'
+import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useGetProductQuery } from '../../../redux/api/apiSlice'

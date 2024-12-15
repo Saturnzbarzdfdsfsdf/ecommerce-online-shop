@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '../redux/store';
+import { useAppDispatch } from '../shared/lib/Hook/Hooks';
 
 import { Header } from '../widget/Header/index';
 import { Footer } from '../widget/Footer';

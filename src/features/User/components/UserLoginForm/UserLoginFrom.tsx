@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { useAppDispatch } from '../../../../redux/store';
+import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
 
 import { loginUser } from '../../../../redux/user/userSlice';
 
