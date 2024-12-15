@@ -7,6 +7,7 @@ import { RootState } from '../../../app/store';
 
 import { fetchCategories } from '../../../redux/categories/categoriesSlice';
 import { fetchProducts } from '../../../entities/model/productThunk';
+import { setCurrentPage } from '../../../entities/model/productsSlice';
 
 // selectors
 import {
@@ -20,7 +21,6 @@ import { Products } from '../../Products/index';
 import { Categories } from '../../Categories/index';
 import { Poster } from '../../../widget/Poster/index';
 import { Pagination } from '@mui/material';
-import { setCurrentPage } from '../../../entities/model/productsSlice';
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -39,24 +39,21 @@ const Home: React.FC = () => {
 	}, [dispatch, currentPage]);
 
 	const handlePageChange = (
-		event: React.ChangeEvent<unknown>,
+		_event: React.ChangeEvent<unknown>,
 		value: number
 	) => {
 		dispatch(setCurrentPage(value));
 		dispatch(fetchProducts(value.toString()));
 	};
-	
+
 	return (
 		<>
 			<Poster />
 
 			<Categories products={categories} amount={5} title='Categories' />
 
-			<Products
-				title='Products'
-				products={products}
-			/>
-	
+			<Products title='Products' products={products} />
+
 			<Pagination
 				count={products.length}
 				page={currentPage}

@@ -11,7 +11,6 @@ import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
 import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index'
 
-
 import { ROUTES } from '../../../shared/consts/routes';
 
 import { IUser } from '../../../shared/types';
