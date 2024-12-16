@@ -25,5 +25,4 @@ export const apiSlice = createApi({
 		}),
 	}),
 });
-
 export const { useGetProductQuery, useGetProductsQuery } = apiSlice;
