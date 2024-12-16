@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 
 import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
 
-import { loginUser } from '../../../../redux/user/userSlice';
+// import { loginUser } from '../../../../redux/user/userSlice';
+import { loginUserThunk } from '../../../../entities/user/model/userThunks';
 
 import { IUserFormProps, IFormUserValues } from '../../../../shared/types/index';
 import { Button } from '../../../../shared/ui/Button';
@@ -19,6 +20,7 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 	toggleCurrentFormType,
 }) => {
 	const dispatch = useAppDispatch();
+	
 	const {
 		register,
 		handleSubmit,
@@ -26,7 +28,7 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 	} = useForm<TUserLogin>();
 
 	const onSubmit = (data: TUserLogin) => {
-		dispatch(loginUser(data));
+		dispatch(loginUserThunk(data));
 		closeForm();
 	};
 

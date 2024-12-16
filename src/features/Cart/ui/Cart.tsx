@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { sumBy } from '../../../shared/consts/common';
 
-import { addItemToCart, removeItemFromCart } from '../../../redux/user/userSlice';
+import { addItemToCart, removeItemFromCart } from '../../../entities/user/model/userSlice';
 
 import styles from './Cart.module.css';
 

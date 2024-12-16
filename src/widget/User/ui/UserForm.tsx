@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-import { toggleForm, toggleFormType } from '../../../redux/user/userSlice';
+import { toggleForm, toggleFormType } from '../../../entities/user/model/userSlice';
 
 import { IUserState } from '../../../shared/types/index';
 
@@ -41,10 +41,8 @@ const UserForm: React.FC = () => {
 				toggleCurrentFormType={toggleCurrentFormType}
 				closeForm={onClickCloseForm}
 			/>
-
 		</>
 	);
 };
-
 
 export default UserForm;

@@ -5,11 +5,18 @@ import { IUserState, IUser } from '../../../shared/api/user/index';
 import { createUserThunk, updateUserThunk, loginUserThunk } from './userThunks';
 
 // Функция для добавления текущего пользователя в состояние
+// const updateCurrentUser = (
+// 	state: IUserState,
+// 	action: PayloadAction<{ user: IUser }>
+// ) => {
+// 	state.currentUser = action.payload.user;
+// };
+
 const updateCurrentUser = (
 	state: IUserState,
-	action: PayloadAction<{ user: IUser }>
+	{ payload }: PayloadAction<{ user: IUser }>
 ) => {
-	state.currentUser = action.payload.user;
+	state.currentUser = payload.user;
 };
 
 const initialState: IUserState = {

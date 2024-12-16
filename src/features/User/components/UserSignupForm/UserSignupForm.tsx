@@ -1,12 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { createUser } from '../../../../redux/user/userSlice';
+import { createUserThunk } from '../../../../entities/user/model/userThunks';
 
 import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
-import { IUserFormProps, IFormUserValues } from '../../../../shared/types';
+import { IUserFormProps } from '../../../../shared/types';
+
+import { IUser } from '../../../../shared/api/user/userTypes';
 
 import { Button } from '../../../../shared/ui/Button';
+
+// type TUser = Pick<IUser, 'avatar' | 'email' | 'password' | 'name'>
 
 import styles from '../UserComponentsForm.module.css';
 
@@ -15,14 +19,15 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 	closeForm,
 }) => {
 	const dispatch = useAppDispatch();
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<IFormUserValues>();
+	} = useForm<IUser>();
 
-	const onSubmit = (data: IFormUserValues) => {
-		dispatch(createUser(data));
+	const onSubmit = (data: IUser) => {
+		dispatch(createUserThunk(data));
 		closeForm();
 	};
 
@@ -30,6 +35,7 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.group}>
 				<input
+					value='Tester21@gmail.comm'
 					type='email'
 					placeholder='Your email'
 					autoComplete='off'
@@ -37,7 +43,7 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 						required: 'Email is required',
 						pattern: {
 							value: /\S+@\S+\.\S+/,
-							message: 'Invalid email address',
+							message: 'На правильно указана почта',
 						},
 					})}
 				/>
@@ -48,6 +54,7 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 
 			<div className={styles.group}>
 				<input
+					value='Tester'
 					type='text'
 					placeholder='Your name'
 					autoComplete='off'
@@ -60,6 +67,7 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 
 			<div className={styles.group}>
 				<input
+					value='Tester221'
 					type='password'
 					placeholder='Your password'
 					autoComplete='off'
@@ -67,15 +75,15 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 						required: 'Password is required',
 						minLength: {
 							value: 6,
-							message: 'Password must be at least 6 characters long',
+							message: 'Пароль должен содержать минимум 6 символов',
 						},
 						maxLength: {
 							value: 20,
-							message: 'Password cannot exceed 20 characters',
+							message: 'Пароль не должен превышать 20 символов',
 						},
 						validate: value =>
-							/^(?=.*[A-Za-z])(?=.*\d)/.test(value) ||
-							'Password must contain both letters and numbers',
+							/^(?=.*[A-Za-z])(?=.*\d)/.test(value ?? '') ||
+							'Пароль должен содержать как буквы, так и цифры',
 					})}
 				/>
 				{errors.password && (

@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-import { toggleForm } from '../../../redux/user/userSlice';
+import { toggleForm } from '../../../entities/user/model/userSlice';
 
 import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 

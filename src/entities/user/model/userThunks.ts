@@ -26,7 +26,7 @@ export const createUserThunk = createAsyncThunk<
 	try {
 		const response = await apiCreateUserRequest(payload);
 
-		return response;
+		return { user: response };
 	} catch (err: unknown) {
 		return thunkAPI.rejectWithValue(handleError(err));
 	}
@@ -38,12 +38,10 @@ export const loginUserThunk = createAsyncThunk<
 	{ readonly rejectValue: RejectedDataType }
 >('users/loginUser', async (payload, thunkAPI) => {
 	try {
-
 		const response = await apiLoginRequest(payload);
 		const userProfile = await apiGetProfileRequest(response.token);
-		
+
 		return { token: response.token, user: userProfile };
-		
 	} catch (err) {
 		return thunkAPI.rejectWithValue(handleError(err));
 	}
@@ -51,12 +49,12 @@ export const loginUserThunk = createAsyncThunk<
 
 export const updateUserThunk = createAsyncThunk<
 	{ user: IUser },
-	{ id: string; data: Partial<IUser> },
+	{ id: number; data: Partial<IUser> },
 	{ readonly rejectValue: RejectedDataType }
 >('users/updateUser', async (payload, thunkAPI) => {
 	try {
 		const response = await apiUpdateUserRequest(payload.id, payload.data);
-		return response;
+		return { user: response };
 	} catch (err) {
 		return thunkAPI.rejectWithValue(handleError(err));
 	}

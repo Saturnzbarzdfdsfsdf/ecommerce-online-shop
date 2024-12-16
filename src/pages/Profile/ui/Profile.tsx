@@ -3,66 +3,78 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-import { updateUser } from '../../../redux/user/userSlice';
+import { updateUserThunk } from '../../../entities/user/model/userThunks';
+
+import { IUser } from '../../../shared/api/user/userTypes';
 
 import styles from './Profile.module.css';
-
-
-interface IUser {
-	id: string;
-	name: string;
-	email: string;
-	password: string;
-	avatar: string;
-}
 
 interface IUserState {
 	currentUser: IUser | null;
 }
 
-const Profile: React.FC= () => {
-	const dispatch = useAppDispatch()
+const Profile: React.FC = () => {
+	const dispatch = useAppDispatch();
 
 	const { currentUser } = useSelector(
 		(state: { user: IUserState }) => state.user
-	)
+	);
+
+	// const [values, setValue] = useState<IUser>({
+	// 	id: '',
+	// 	name: 'Tester59',
+	// 	email: 'tester01@gmail.com',
+	// 	password: 'Tester59',
+	// 	avatar:
+	// 		'https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg',
+	// });
 
 	const [values, setValue] = useState<IUser>({
-		id: '',
-		name: '',
+		id: 0,
 		email: '',
 		password: '',
-		avatar:
-			'https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg',
-	})
+		name: '',
+		avatar: '',
+		role: '',
+		creationAt: '',
+		updatedAt: '',
+	});
 
 	useEffect(() => {
-		if (!currentUser) return
+		if (!currentUser) return;
 
-		setValue(currentUser)
-	}, [currentUser])
+		setValue(currentUser);
+	}, [currentUser]);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { value, name } = event.target
+		const { value, name } = event.target;
 		setValue(prevValues => ({
 			...prevValues,
 			[name]: value,
-		}))
-	}
+		}));
+	};
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+		e.preventDefault();
 
-		if (!values.id) {
-			console.error('ID is required for updating user.')
-			return
-		}
+		const isNotEmpty = Object.values(values).every(val => val);
+		if (!isNotEmpty) return;
 
-		const isNotEmpty = Object.values(values).every(val => val)
-		if (!isNotEmpty) return
+		const payload = {
+			id: values.id,
+			data: {
+				name: values.name,
+				email: values.email,
+				password: values.password,
+				avatar: values.avatar,
+				role: values.role,
+				creationAt: values.creationAt,
+				updatedAt: values.updatedAt,
+			},
+		};
 
-		dispatch(updateUser(values))
-	}
+		dispatch(updateUserThunk(payload));
+	};
 
 	return (
 		<section className={styles.profile}>
@@ -124,7 +136,7 @@ const Profile: React.FC= () => {
 				</form>
 			)}
 		</section>
-	)
-}
+	);
+};
 
 export default Profile;

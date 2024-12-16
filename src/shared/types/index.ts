@@ -1,13 +1,12 @@
-export { type IProductsProps } from './productsTypes'
+// export { type IProductsProps } from './productsTypes'
 // export { type IProductItem, type IProductsProps, type IProduct } from './productsTypes'
 export { type ICategoriesProps } from './categoriesTypes'
 
 
 export {
-	type IUser,
+	// type IUser,
 	type IUserState,
 	type IUserFormProps,
-	type IFormUserValues,
 } from './userTypes';
 
 // error

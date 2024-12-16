@@ -1,14 +1,18 @@
 export interface IUser {
-	id?: string;
-	name: string;
+	id: number;
 	email: string;
+	password?: string;
+	name: string;
+	avatar: string;
+	role: string;
+	creationAt: string;
+	updatedAt: string;
 }
-
 
 export interface IUserState {
 	currentUser: IUser | null;
-	cart: Array<{ id: string; quantity: number }>;
-  
+	cart: Array<{ id: number; quantity: number }>;
+
 	isLoading: boolean;
 	showForm: boolean;
 	formType: 'signup' | 'login';

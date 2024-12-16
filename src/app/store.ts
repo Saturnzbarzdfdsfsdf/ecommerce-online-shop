@@ -4,7 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import productsSlice from '../entities/product/model/productsSlice';
 
 import categoriesSlice from '../redux/categories/categoriesSlice';
-import userSlice from '../redux/user/userSlice';
+// import userSlice from '../redux/user/userSlice';
+import userSlice from '../entities/user/model/userSlice';
 
 import { apiSlice } from '../redux/api/apiSlice'
 
