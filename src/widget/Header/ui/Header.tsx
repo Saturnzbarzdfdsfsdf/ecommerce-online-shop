@@ -13,6 +13,7 @@ import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index'
 
 import { ROUTES } from '../../../shared/consts/routes';
 
+
 import { IUser } from '../../../shared/types';
 
 import LOGO from '../../../shared/assets/img/logo.svg';
@@ -20,11 +21,11 @@ import LOGO from '../../../shared/assets/img/logo.svg';
 import AVATAR from '../../../shared/assets/img/avatar.jpg';
 
 import styles from './Header.module.css';
+import { selectCart } from '../../../features/Cart';
 
 interface RootState {
 	user: {
 		currentUser: IUser | null;
-		cart: Array<{ id: string; quantity?: number }>;
 	};
 }
 
@@ -36,8 +37,10 @@ const Header: React.FC = () => {
 
 	const { data = [], isLoading } = useGetProductsQuery({ title: searchValue });
 
-	const { currentUser, cart } = useSelector((state: RootState) => state.user);
+	const { currentUser } = useSelector((state: RootState) => state.user);
 	
+	const cart = useSelector(selectCart)
+
 	const [values, setValues] = useState<IUser>({
 		name: 'Guest',
 		avatar: AVATAR,

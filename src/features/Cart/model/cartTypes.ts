@@ -1,5 +1,5 @@
 export interface ICart {
-	cart: Array<{ id: number; quantity: number }>;
+	cartCount: Array<{ id: number; quantity: number }>;
 }
 
 export interface ICategory {

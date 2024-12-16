@@ -1,16 +1,11 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { ICart } from '../../../features/Cart';
 
 import styles from './CartIcon.module.css';
 
-interface CartIconProps {
-	cartCount: {
-		id: string;
-		quantity?: number;
-	}[];
-}
 
-const CartIcon: FC<CartIconProps> = ({ cartCount }) => {
+const CartIcon: FC<ICart> = ({ cartCount }) => {
 	const totalQuantity = Array.isArray(cartCount)
 		? cartCount.reduce((acc, item) => acc + (item.quantity || 0), 0)
 		: 0;
