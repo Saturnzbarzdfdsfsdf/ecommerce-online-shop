@@ -1,33 +1,30 @@
 import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
+
 
 import { toggleForm } from '../../../entities/user/model/userSlice';
 
 import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
-import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index'
+import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index';
 
 import { ROUTES } from '../../../shared/consts/routes';
 
+import { IUser } from '../../../shared/api/user/userTypes';
 
-import { IUser } from '../../../shared/types';
+import { selectCart } from '../../../features/Cart';
+import { selectCurrentUser } from '../../../entities/index';
 
 import LOGO from '../../../shared/assets/img/logo.svg';
-
 import AVATAR from '../../../shared/assets/img/avatar.jpg';
 
 import styles from './Header.module.css';
-import { selectCart } from '../../../features/Cart';
 
-interface RootState {
-	user: {
-		currentUser: IUser | null;
-	};
-}
+type TProfile = Pick<IUser, 'name' | 'avatar'>
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -37,11 +34,10 @@ const Header: React.FC = () => {
 
 	const { data = [], isLoading } = useGetProductsQuery({ title: searchValue });
 
-	const { currentUser } = useSelector((state: RootState) => state.user);
-	
-	const cart = useSelector(selectCart)
+	const cart = useSelector(selectCart);
+	const currentUser = useSelector(selectCurrentUser);
 
-	const [values, setValues] = useState<IUser>({
+	const [values, setValues] = useState<TProfile>({
 		name: 'Guest',
 		avatar: AVATAR,
 	});
@@ -54,11 +50,11 @@ const Header: React.FC = () => {
 
 	const onProfileClick = () => {
 		if (!currentUser) {
-			dispatch(toggleForm(true))
+			dispatch(toggleForm(true));
 		} else {
-			navigate(ROUTES.PROFILE)
+			navigate(ROUTES.PROFILE);
 		}
-	}
+	};
 
 	return (
 		<div className={styles.header}>
@@ -69,7 +65,6 @@ const Header: React.FC = () => {
 			</div>
 
 			<div className={styles.info}>
-
 				<UserInfo user={values} onProfileClick={onProfileClick} />
 
 				<SearchBar
@@ -80,11 +75,9 @@ const Header: React.FC = () => {
 				/>
 
 				<CartIcon cartCount={cart} />
-				
-
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Header;

@@ -9,11 +9,4 @@ export interface IUser {
 	updatedAt: string;
 }
 
-export interface IUserState {
-	currentUser: IUser | null;
-	cart: Array<{ id: number; quantity: number }>;
 
-	isLoading: boolean;
-	showForm: boolean;
-	formType: 'signup' | 'login';
-}

@@ -9,3 +9,12 @@ export interface IProductsState {
 	filtered: IProduct[]; 
 	related: IProduct[]; 
 }
+
+export interface IProductsProps {
+	title: string;
+	products: IProduct[];
+}
+
+export interface IProductCard {
+	product: IProduct;
+}

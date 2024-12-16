@@ -14,7 +14,7 @@ import {
 	selectProducts,
 	// selectFilteredProducts,
 	selectCurrentPage,
-} from '../../../entities/product/model/selectors';
+} from '../../../entities/product/model/productSelectors';
 
 // components
 import { Products } from '../../Products/index';

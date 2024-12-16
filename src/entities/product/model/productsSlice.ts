@@ -5,13 +5,13 @@ import { fetchProducts } from './productThunk';
 import { shuffle } from '../../../shared/consts/common';
 
 import { IProduct } from '../../../shared/api/product/index';
-import { IProductsState } from './types';
+import { IProductsState } from './productTypes';
 
 const initialState: IProductsState = {
 	products: [],
 	filtered: [],
 	related: [],
-	
+
 	currentPage: 1,
 	totalPages: 0,
 	loading: false,

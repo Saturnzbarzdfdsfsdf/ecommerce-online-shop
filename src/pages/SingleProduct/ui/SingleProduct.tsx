@@ -9,7 +9,7 @@ import { ROUTES } from '../../../shared/consts/routes';
 import {
 	selectProducts,
 	selectRelatedProducts,
-} from '../../../entities/product/model/selectors';
+} from '../../../entities/product/model/productSelectors';
 
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';

@@ -1,3 +1,4 @@
+// api
 export {
 	apiCreateUserRequest,
 	apiUpdateUserRequest,
@@ -5,4 +6,6 @@ export {
 	apiGetProfileRequest,
 } from './userApi';
 
-export { type IUser, type IUserState } from './userTypes';
+
+// type
+export { type IUser } from './userTypes';

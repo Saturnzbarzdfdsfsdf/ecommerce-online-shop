@@ -13,6 +13,3 @@ export interface IProduct {
 	readonly category?: ICategory;
 }
 
-export interface IProductCard {
-	product: IProduct;
-}

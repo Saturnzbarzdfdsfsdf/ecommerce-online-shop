@@ -1,16 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IUserState, IUser } from '../../../shared/api/user/index';
+import { IUser } from '../../../shared/api/user/index';
+import { IUserState } from './userTypes';
 
 import { createUserThunk, updateUserThunk, loginUserThunk } from './userThunks';
-
-// Функция для добавления текущего пользователя в состояние
-// const updateCurrentUser = (
-// 	state: IUserState,
-// 	action: PayloadAction<{ user: IUser }>
-// ) => {
-// 	state.currentUser = action.payload.user;
-// };
 
 const updateCurrentUser = (
 	state: IUserState,
