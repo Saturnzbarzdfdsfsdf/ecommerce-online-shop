@@ -5,40 +5,27 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { sumBy } from '../../../shared/consts/common';
 
-import { addItemToCart, removeItemFromCart } from '../../../entities/user/model/userSlice';
+import {
+	addItemToCart,
+	removeItemCart,
+} from '../../../features/Cart/model/cartSlices';
 
+import { ICartProduct } from '../index';
+
+import { selectCart } from '../model/cartSelectors';
 import styles from './Cart.module.css';
-
-
-// Определяем интерфейс для продукта в корзине
-interface CartItem {
-	id: string;
-	title: string;
-	category: {
-		name: string;
-	};
-	images: string[];
-	price: number;
-	quantity: number;
-}
-
-// Определяем интерфейс для состояния пользователя
-interface UserState {
-	cart: CartItem[];
-}
 
 const Cart: React.FC = () => {
 	const dispatch = useAppDispatch();
 
-	// Используем типизацию для селектора
-	const { cart } = useSelector((state: { user: UserState }) => state.user);
+	const cart = useSelector(selectCart);
 
-	const updateCartItemQuantity = (item: CartItem, quantity: number) => {
+	const updateCartItemQuantity = (item: ICartProduct, quantity: number) => {
 		dispatch(addItemToCart({ ...item, quantity }));
 	};
 
-	const removeItem = (id: string) => {
-		dispatch(removeItemFromCart(id));
+	const removeItem = (id: number) => {
+		dispatch(removeItemCart(id));
 	};
 
 	return (
