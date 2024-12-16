@@ -35,7 +35,7 @@ const userSlice = createSlice({
 	reducers: {
 		addItemToCart: (
 			state,
-			{ payload }: PayloadAction<{ id: string; quantity?: number }>
+			{ payload }: PayloadAction<{ id: number; quantity?: number }>
 		) => {
 			let newCart = [...state.cart];
 
