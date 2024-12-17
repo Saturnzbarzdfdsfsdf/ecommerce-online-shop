@@ -4,23 +4,24 @@ import { useForm } from 'react-hook-form';
 
 import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
 
-// import { loginUser } from '../../../../redux/user/userSlice';
 import { loginUserThunk } from '../../../../entities/user/model/userThunks';
 
-import { IUserFormProps, IFormUserValues } from '../../../../shared/types/index';
+import { IUserFormProps } from '../../../../entities/user/index';
+
+import { IUser } from '../../../../shared/api/user/index';
+
 import { Button } from '../../../../shared/ui/Button';
 
 import styles from '../UserComponentsForm.module.css';
 
-
-type TUserLogin = Pick<IFormUserValues, 'email' | 'password'>;
+type TUserLogin = Pick<IUser, 'email' | 'password'>;
 
 const UserLoginFrom: FC<IUserFormProps> = ({
 	closeForm,
 	toggleCurrentFormType,
 }) => {
 	const dispatch = useAppDispatch();
-	
+
 	const {
 		register,
 		handleSubmit,
@@ -66,9 +67,10 @@ const UserLoginFrom: FC<IUserFormProps> = ({
 							value: 20,
 							message: 'Password cannot exceed 20 characters',
 						},
-						validate: value => 
-              /^(?=.*[A-Za-z])(?=.*\d)/.test(value) || 'Password must contain both letters and numbers'
-          })}
+						validate: value =>
+							/^(?=.*[A-Za-z])(?=.*\d)/.test(value) ||
+							'Password must contain both letters and numbers',
+					})}
 				/>
 				{errors.password && <div>{errors.password.message}</div>}
 			</div>

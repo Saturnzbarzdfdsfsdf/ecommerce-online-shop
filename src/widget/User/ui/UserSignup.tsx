@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { IUserFormProps } from '../../../shared/types';
+import { IUserFormProps } from '../../../entities/user/index';
+
 import { UserSignupForm } from '../../../features/User/index';
 
 import styles from './User.module.css';

@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { toggleForm, toggleFormType } from '../../../entities/user/model/userSlice';
 
-import { IUserState } from '../../../shared/types/index';
+import { IUserState } from '../../../entities/user/index';
 
 import UserSignup from './UserSignup';
 import UserLogin from './UserLogin';

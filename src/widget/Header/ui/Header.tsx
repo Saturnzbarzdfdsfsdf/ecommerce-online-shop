@@ -17,7 +17,8 @@ import { ROUTES } from '../../../shared/consts/routes';
 import { IUser } from '../../../shared/api/user/userTypes';
 
 import { selectCart } from '../../../features/Cart';
-import { selectCurrentUser } from '../../../entities/index';
+
+import { selectCurrentUser } from '../../../entities/user/index';
 
 import LOGO from '../../../shared/assets/img/logo.svg';
 import AVATAR from '../../../shared/assets/img/avatar.jpg';

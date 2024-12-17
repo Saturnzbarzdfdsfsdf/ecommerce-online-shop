@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IUserFormProps } from '../../../shared/types';
+import { IUserFormProps } from '../../../entities/user/index';
 
 import { UserLoginFrom } from '../../../features/User/index';
 
