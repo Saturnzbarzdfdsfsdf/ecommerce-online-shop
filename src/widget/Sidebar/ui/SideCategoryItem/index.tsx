@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { ICategory } from '../../../../shared/api/product';
+
 import styles from '../Sidebar.module.css';
 
-interface ISideBarCategory {
-	id: string;
-	name: string;
-}
-const SideCategoryItem: FC<ISideBarCategory> = ({ id, name }) => {
+type TCategoryName = Pick<ICategory, 'id' | 'name'>
+
+const SideCategoryItem: FC<TCategoryName> = ({ id, name }) => {
 	return (
 		<li key={id}>
 			<NavLink

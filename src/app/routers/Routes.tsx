@@ -3,8 +3,10 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Home } from '../../pages/Home/index';
+
 import { SingleProduct } from '../../pages/SingleProduct/index';
 import { SingleCategory } from '../../widget/SingleCategory/index';
+
 import { Profile } from '../../pages/Profile/index';
 
 import { Cart } from '../../features/Cart/index';

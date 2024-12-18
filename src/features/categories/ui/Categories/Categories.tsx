@@ -10,6 +10,7 @@ const Categories: FC<ICategoriesProps> = ({
 	products = [],
 	amount = 0,
 }) => {
+	
 	const list = products.slice(0, Math.max(amount, 0));
 
 	if (list.length === 0) {

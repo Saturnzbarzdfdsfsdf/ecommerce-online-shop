@@ -3,12 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 // Импорт срезов (slices)
 import productsSlice from '../entities/product/model/productsSlice';
 
-import categoriesSlice from '../redux/categories/categoriesSlice';
+import categoriesSlice from '../entities/categories/model/categoriesSlice';
 
 import userSlice from '../entities/user/model/userSlice';
 import cartSlice from '../features/Cart/model/cartSlices';
 
-import { apiSlice } from '../redux/api/apiSlice'
+import { apiSlice } from '../redux/api/apiSlice';
 
 export const store = configureStore({
 	reducer: {

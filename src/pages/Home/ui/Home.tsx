@@ -5,7 +5,8 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { RootState } from '../../../app/store';
 
-import { fetchCategories } from '../../../redux/categories/categoriesSlice';
+import { fetchCategories } from '../../../entities/categories/model/categoriesThunk';
+
 import { fetchProducts } from '../../../entities/product/model/productThunk';
 import { setCurrentPage } from '../../../entities/product/model/productsSlice';
 

@@ -23,7 +23,7 @@ const categoriesSlice = createSlice({
 		builder.addCase(
 			fetchCategories.fulfilled,
 			(state, action: PayloadAction<{ list: ICategory[] }>) => {
-				state.list = action.payload.list;
+				state.list = action.payload;
 				state.isLoading = false;
 			}
 		);
