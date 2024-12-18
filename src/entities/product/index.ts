@@ -7,7 +7,7 @@ export { fetchProducts } from './model/productThunk';
 export { setCurrentPage } from './model/productsSlice';
 
 // type
-export { type IProductCard } from './model/types';
+export { type IProductCard, type IProductsProps } from './model/types';
 
 // selectors
 export {

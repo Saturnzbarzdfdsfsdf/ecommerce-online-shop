@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { IProductsProps } from '../../../shared/types/index';
-
 import { ProductCard } from '../../../entities/index';
+
+import { IProductsProps } from '../../../entities/product/index';
 
 import styles from './Products.module.css';
 
