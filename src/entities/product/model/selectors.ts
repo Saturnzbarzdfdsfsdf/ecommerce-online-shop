@@ -1,4 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit';
+// import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '../../../app/store';
 
@@ -11,14 +11,14 @@ const selectFilterProductsByPrice = (state: RootState) =>
 	state.products.filtered;
 
 // Мемоизированный селектор
-const selectFilteredProducts = createSelector(
-	[selectProducts, selectCurrentPage],
-	(products, currentPage) => {
-		const itemsPerPage = 10; // Количество продуктов на странице
-		const startIndex = (currentPage - 1) * itemsPerPage;
-		return products.slice(startIndex, startIndex + itemsPerPage);
-	}
-);
+// const selectFilteredProducts = createSelector(
+// 	[selectProducts, selectCurrentPage],
+// 	(products, currentPage) => {
+// 		const itemsPerPage = 10; // Количество продуктов на странице
+// 		const startIndex = (currentPage - 1) * itemsPerPage;
+// 		return products.slice(startIndex, startIndex + itemsPerPage);
+// 	}
+// );
 
 export {
 	selectProducts,
@@ -27,5 +27,5 @@ export {
 	selectTotalPages,
 	selectRelatedProducts,
 	selectFilterProductsByPrice,
-	selectFilteredProducts,
+	// selectFilteredProducts,
 };

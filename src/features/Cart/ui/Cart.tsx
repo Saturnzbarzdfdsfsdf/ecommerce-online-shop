@@ -3,16 +3,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-import { sumBy } from '../../../shared/consts/common';
-
 import {
 	addItemToCart,
 	removeItemCart,
-} from '../../../features/Cart/model/cartSlices';
+	selectCart,
+	ICartProduct,
+} from '../index';
 
-import { ICartProduct } from '../index';
+import { sumBy } from '../../../shared/consts/common';
 
-import { selectCart } from '../model/cartSelectors';
 import styles from './Cart.module.css';
 
 const Cart: React.FC = () => {

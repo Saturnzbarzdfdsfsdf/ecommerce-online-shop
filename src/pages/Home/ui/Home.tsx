@@ -3,18 +3,15 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-import { RootState } from '../../../app/store';
-
-import { fetchCategories } from '../../../entities/categories/model/categoriesThunk';
-
-import { fetchProducts } from '../../../entities/product/model/productThunk';
-import { setCurrentPage } from '../../../entities/product/model/productsSlice';
-
+import { fetchCategories } from '../../../entities/categories/index';
 import {
+	setCurrentPage,
+	fetchProducts,
 	selectProducts,
-	// selectFilteredProducts,
 	selectCurrentPage,
-} from '../../../entities/product/model/productSelectors';
+} from '../../../entities/product/index';
+
+import { selectCategories } from '../../../entities/categories';
 
 // components
 import { Products } from '../../Products/index';
@@ -25,9 +22,7 @@ import { Pagination } from '@mui/material';
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
 
-	const { categories } = useSelector((state: RootState) => ({
-		categories: state.categories.list,
-	}));
+	const categories = useSelector(selectCategories);
 
 	const products = useSelector(selectProducts);
 

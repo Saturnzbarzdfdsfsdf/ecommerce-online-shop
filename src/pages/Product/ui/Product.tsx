@@ -9,13 +9,13 @@ import { ROUTES } from '../../../shared/consts/routes';
 
 import { ImageGallery, SizeSelector, ProductInfo, Actions } from '../index';
 
-import { IProductItem } from '../../../shared/types';
+import { ICartProduct } from '../../../features/Cart/index';
 
 import styles from './Product.module.css';
 
 const SIZES = [42, 46, 48, 50, 52];
 
-const Product: FC<IProductItem> = item => {
+const Product: FC<ICartProduct> = item => {
 	const { images, title, price, description } = item;
 
 	const dispatch = useAppDispatch();
@@ -49,31 +49,22 @@ const Product: FC<IProductItem> = item => {
 				onSetCurrentImage={onClickSetCurrentImage}
 			/>
 			<div className={styles.info}>
-				<ProductInfo 
-				title={title} 
-				price={price} 
-				description={description} 
-				/>
+				<ProductInfo title={title} price={price} description={description} />
 
 				<SizeSelector
 					sizes={SIZES}
 					currentSize={currentSize}
 					onSetSize={onClickSetSize}
 				/>
-				
-				<Actions 
-				onAddToCart={onClickAddCart} 
-				disabled={!currentSize} 
-				/>
+
+				<Actions onAddToCart={onClickAddCart} disabled={!currentSize} />
 
 				<div className={styles.bottom}>
 					<span>19 people purchased</span>
 					<Link to={ROUTES.HOME}>Return to store</Link>
 				</div>
 			</div>
-
 		</section>
-
 	);
 };
 

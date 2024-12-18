@@ -5,7 +5,7 @@ import { fetchProducts } from './productThunk';
 import { shuffle } from '../../../shared/consts/common';
 
 import { IProduct } from '../../../shared/api/product/index';
-import { IProductsState } from './productTypes';
+import { IProductsState } from './types';
 
 const initialState: IProductsState = {
 	products: [],

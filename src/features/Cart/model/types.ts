@@ -18,6 +18,7 @@ export interface ICartProduct {
 	images: string[];
 	name: string;
 
+	description: string;
 	category: ICategory;
 	creationAt: string;
 	updatedAt: string;
