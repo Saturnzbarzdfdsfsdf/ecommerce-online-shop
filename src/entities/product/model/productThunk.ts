@@ -4,7 +4,7 @@ import { getProducts, IProduct } from '../../../shared/api/product';
 import { ErrorType, RejectedDataType } from '../../../shared/types/index';
 
 export const fetchProducts = createAsyncThunk<
-	{ products: IProduct[]; totalPages: number }, // при успешном запросе вернется obj
+	{ products: IProduct[]; }, // при успешном запросе вернется obj
 	string,
 	{ readonly rejectValue: RejectedDataType } // Вернется в случае ошибки
 >('products/fetchProducts', async (page, thunkAPI) => {

@@ -5,7 +5,6 @@ import { RootState } from '../../../app/store';
 const selectProducts = (state: RootState) => state.products.products;
 const selectLoading = (state: RootState) => state.products.loading;
 const selectCurrentPage = (state: RootState) => state.products.currentPage;
-const selectTotalPages = (state: RootState) => state.products.totalPages;
 const selectRelatedProducts = (state: RootState) => state.products.related;
 const selectFilterProductsByPrice = (state: RootState) =>
 	state.products.filtered;
@@ -24,7 +23,6 @@ export {
 	selectProducts,
 	selectLoading,
 	selectCurrentPage,
-	selectTotalPages,
 	selectRelatedProducts,
 	selectFilterProductsByPrice,
 	// selectFilteredProducts,

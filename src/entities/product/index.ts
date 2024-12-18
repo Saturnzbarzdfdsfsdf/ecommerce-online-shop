@@ -14,7 +14,6 @@ export {
 	selectProducts,
 	selectLoading,
 	selectCurrentPage,
-	selectTotalPages,
 	selectRelatedProducts,
 	selectFilterProductsByPrice,
 	// selectFilteredProducts,

@@ -13,7 +13,6 @@ const initialState: IProductsState = {
 	related: [],
 
 	currentPage: 1,
-	totalPages: 0,
 	loading: false,
 	error: null,
 };
@@ -49,12 +48,9 @@ const productsSlice = createSlice({
 			})
 			.addCase(
 				fetchProducts.fulfilled,
-				(
-					state,
-					action: PayloadAction<{ products: IProduct[]; totalPages: number }>
-				) => {
+				(state, action: PayloadAction<{ products: IProduct[] }>) => {
 					state.products = action.payload;
-					// state.totalPages = action.payload;
+
 					state.loading = false;
 				}
 			)

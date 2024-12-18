@@ -5,8 +5,8 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { fetchCategories } from '../../../entities/categories/index';
 import {
-	setCurrentPage,
 	fetchProducts,
+	setCurrentPage,
 	selectProducts,
 	selectCurrentPage,
 } from '../../../entities/product/index';
@@ -23,9 +23,7 @@ const Home: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	const categories = useSelector(selectCategories);
-
 	const products = useSelector(selectProducts);
-
 	const currentPage = useSelector(selectCurrentPage);
 
 	useEffect(() => {

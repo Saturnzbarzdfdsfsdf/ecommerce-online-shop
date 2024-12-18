@@ -6,15 +6,16 @@ import { ErrorType, RejectedDataType } from '../../../shared/types/index';
 
 export const fetchCategories = createAsyncThunk<
 	{ list: ICategory[] },
-	string,
+	void,
 	{ readonly rejectValue: RejectedDataType }
 >('categories/fetchProducts', async (_, thunkAPI) => {
 	const limit = 5;
 
 	try {
-		const response = await getCategories(limit);
 
+		const response = await getCategories(limit);
 		return response;
+
 	} catch (err: unknown) {
 		const knownError = err as ErrorType;
 
