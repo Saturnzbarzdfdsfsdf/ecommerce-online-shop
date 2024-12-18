@@ -23,14 +23,17 @@ const categoriesSlice = createSlice({
 		builder.addCase(
 			fetchCategories.fulfilled,
 			(state, action: PayloadAction<{ list: ICategory[] }>) => {
-				state.list = action.payload;
+				state.list = action.payload.list;
 				state.isLoading = false;
 			}
 		);
 		builder.addCase(fetchCategories.rejected, (state, action) => {
 			state.isLoading = false;
-			if (action.payload) {
+			if (action.payload && action.payload.messageError) {
+				
 				state.error = action.payload.messageError;
+			} else {
+				state.error = 'Unknown error occurred';
 			}
 		});
 	},

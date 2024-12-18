@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ICategoriesProps } from '../../../../shared/types';
+import { ICategoriesProps } from '../../../../entities/categories/index';
 
 import styles from './Categories.module.css';
 

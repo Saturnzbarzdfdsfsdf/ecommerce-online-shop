@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { useGetProductsQuery } from '../../../../redux/api/apiSlice';
 
@@ -11,26 +10,23 @@ import { Button } from '../../../../shared/ui/Button';
 
 import styles from './Category.module.css';
 
-
-
 interface FilterValues {
 	title: string;
 	price_min: number;
 	price_max: number;
 }
-
 interface QueryParams {
 	categoryId: string | undefined;
 	limit: number;
 	offset: number;
 }
-
 interface CategoriesState {
 	list: Array<{ id: string; name: string }>;
 }
 
 const Category: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
+	
 	const { list } = useSelector(
 		({ categories }: { categories: CategoriesState }) => categories
 	);
@@ -141,7 +137,7 @@ const defaultParams = useMemo(
 					<button>Reset</button>
 				</div>
 			) : (
-				<Products title='' products={data} />
+				<Products title='Categories in cat ' products={data} />
 			)}
 
 			<div className={styles.more}>

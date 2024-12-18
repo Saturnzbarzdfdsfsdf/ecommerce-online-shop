@@ -5,3 +5,9 @@ export interface ICategoriesState {
 	isLoading: boolean;
 	error: string | null; 
 }
+
+export interface ICategoriesProps {
+	title: string;
+	products?: ICategory[];
+	amount: number;
+}

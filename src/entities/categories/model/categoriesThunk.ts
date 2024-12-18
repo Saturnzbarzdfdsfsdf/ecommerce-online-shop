@@ -5,9 +5,9 @@ import { getCategories, ICategory } from '../../../shared/api/categories/index';
 import { ErrorType, RejectedDataType } from '../../../shared/types/index';
 
 export const fetchCategories = createAsyncThunk<
-	{ categories: ICategory[] },
+	{ list: ICategory[] },
 	string,
-	{ readonly rejectValue: RejectedDataType } // Вернется в случае ошибки
+	{ readonly rejectValue: RejectedDataType }
 >('categories/fetchProducts', async (_, thunkAPI) => {
 	const limit = 5;
 
