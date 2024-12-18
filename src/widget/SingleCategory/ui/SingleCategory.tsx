@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Poster } from '../../../../widget/Poster';
-import { Category } from '../../../Category/index';
+import { Poster } from '../../Poster/index';
+import { Category } from '../../../features/categories';
 
 const SingleCategory: FC = () => {
 	return (

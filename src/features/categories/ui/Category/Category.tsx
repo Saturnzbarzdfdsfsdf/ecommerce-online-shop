@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import { useGetProductsQuery } from '../../../redux/api/apiSlice';
+import { useGetProductsQuery } from '../../../../redux/api/apiSlice';
 
-import { Products } from '../../Products/index';
+import { Products } from '../../../../pages/Products/index';
 
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '../../../../shared/ui/Button';
 
 import styles from './Category.module.css';
 
-// interface Product {
-// 	id: string;
-// 	name: string;
-// 	image: string;
-// }
+
 
 interface FilterValues {
 	title: string;
@@ -45,18 +41,18 @@ const Category: React.FC = () => {
 		price_max: 0,
 	};
 
-	const defaultParams: QueryParams = {
+const defaultParams = useMemo(
+	() => ({
 		categoryId: id,
 		limit: 5,
 		offset: 0,
 		...defaultValues,
-	};
+	}),
+	[id]
+);
 
 	// Заголовок категорий
 	const [title, setTitle] = useState<string>('');
-
-	// Пагинация
-	// const [pagination, setPagination] = useState<Product[]>([]);
 
 	const [values, setValues] = useState<FilterValues>(defaultValues);
 	const [params, setParams] = useState<QueryParams>(defaultParams);
@@ -66,17 +62,13 @@ const Category: React.FC = () => {
 	useEffect(() => {
 		if (!isLoading) return;
 		if (!Array.isArray(data)) return;
-
-		// const products = data as Product[];
-
-		// setPagination(pagination => [...pagination, ...products]);
 	}, [data, isLoading]);
 
 	useEffect(() => {
 		if (!id) return;
 
 		setParams({ ...defaultParams, categoryId: id });
-	}, [id]);
+	}, [defaultParams, id]);
 
 	useEffect(() => {
 		if (!id || !list.length) return;

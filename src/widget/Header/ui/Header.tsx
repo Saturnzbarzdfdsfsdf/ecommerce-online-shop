@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
-
 import { toggleForm } from '../../../entities/user/model/userSlice';
 
 import { useGetProductsQuery } from '../../../redux/api/apiSlice';

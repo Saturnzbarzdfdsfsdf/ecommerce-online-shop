@@ -9,7 +9,6 @@ import { fetchCategories } from '../../../redux/categories/categoriesSlice';
 import { fetchProducts } from '../../../entities/product/model/productThunk';
 import { setCurrentPage } from '../../../entities/product/model/productsSlice';
 
-// selectors
 import {
 	selectProducts,
 	// selectFilteredProducts,
@@ -18,7 +17,7 @@ import {
 
 // components
 import { Products } from '../../Products/index';
-import { Categories } from '../../Categories/index';
+import { Categories } from '../../../features/categories/index';
 import { Poster } from '../../../widget/Poster/index';
 import { Pagination } from '@mui/material';
 
