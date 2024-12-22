@@ -26,7 +26,7 @@ interface CategoriesState {
 
 const Category: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
-	
+
 	const { list } = useSelector(
 		({ categories }: { categories: CategoriesState }) => categories
 	);
@@ -37,15 +37,15 @@ const Category: React.FC = () => {
 		price_max: 0,
 	};
 
-const defaultParams = useMemo(
-	() => ({
-		categoryId: id,
-		limit: 5,
-		offset: 0,
-		...defaultValues,
-	}),
-	[id]
-);
+	const defaultParams = useMemo(
+		() => ({
+			categoryId: id,
+			limit: 5,
+			offset: 0,
+			...defaultValues,
+		}),
+		[id]
+	);
 
 	// Заголовок категорий
 	const [title, setTitle] = useState<string>('');

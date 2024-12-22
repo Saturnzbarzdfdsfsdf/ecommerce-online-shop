@@ -1,5 +1,9 @@
 body {
   background: var(--bg);
+  background-image: url('../../shared//assets//img/dddepth-333.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   font-size: 16px;
   line-height: 16px;
   font-family: Montserrat, Roboto, sans-serif;
@@ -107,7 +111,7 @@ h2 {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
+  /* display: none; */
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

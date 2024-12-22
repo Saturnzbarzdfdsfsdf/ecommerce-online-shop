@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 import { createUserThunk } from '../../../../entities/user/model/userThunks';
 
 import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
-import { IUserFormProps } from '../../../../shared/types';
+
+import { IUserFormProps } from '../../../../entities/user/model/userTypes';
+
+// import AVATAR from '../../../../shared/assets/img/avatar.jpg'
 
 import { IUser } from '../../../../shared/api/user/userTypes';
 
@@ -97,7 +100,7 @@ const UserSignupForm: React.FC<IUserFormProps> = ({
 					// name='avatar'
 					placeholder='Your avatar URL'
 					autoComplete='off'
-					defaultValue='https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'
+					defaultValue='https://www.sport-interfax.ru/ftproot/photos/photostory/2019/07/09/week4_700.jpg'
 					{...register('avatar', { required: 'Avatar URL is required' })}
 				/>
 				{errors.avatar && (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AVATAR from '../../../shared/assets/img/avatar.jpg'
+import AVATAR from '../../assets/img/guest.jpg';
 
 import styles from './UserInfo.module.css'
 

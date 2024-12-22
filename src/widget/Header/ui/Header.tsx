@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
-
 import { toggleForm } from '../../../entities/user/model/userSlice';
 
 import { useGetProductsQuery } from '../../../redux/api/apiSlice';
@@ -19,12 +18,12 @@ import { selectCart } from '../../../features/Cart';
 
 import { selectCurrentUser } from '../../../entities/user/index';
 
-import LOGO from '../../../shared/assets/img/logo.svg';
-import AVATAR from '../../../shared/assets/img/avatar.jpg';
+import LOGO from '../../../shared/assets/img/React.svg';
+import GUEST from '../../../shared/assets/img/guest.jpg';
 
 import styles from './Header.module.css';
 
-type TProfile = Pick<IUser, 'name' | 'avatar'>
+type TProfile = Pick<IUser, 'name' | 'avatar'>;
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -39,7 +38,7 @@ const Header: React.FC = () => {
 
 	const [values, setValues] = useState<TProfile>({
 		name: 'Guest',
-		avatar: AVATAR,
+		avatar: GUEST,
 	});
 
 	useEffect(() => {
@@ -81,3 +80,5 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+

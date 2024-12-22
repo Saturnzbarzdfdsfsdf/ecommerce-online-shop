@@ -5,6 +5,8 @@ import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
 
 import { updateUserThunk } from '../../../entities/user/model/userThunks';
 
+// import AVATAR from '../../../shared/assets/img/avatar.jpg';
+
 import { IUser } from '../../../shared/api/user/userTypes';
 
 import styles from './Profile.module.css';

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ROUTES } from '../../../shared/consts/routes';
 
-import LOGO from '../../../shared/assets/img/logo.svg';
+import LOGO from '../../../shared/assets/img/React.svg';
 
 import styles from './Footer.module.css';
 
