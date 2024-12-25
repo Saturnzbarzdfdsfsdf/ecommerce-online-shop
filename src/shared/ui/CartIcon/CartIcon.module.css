@@ -9,8 +9,9 @@
 }
 
 .account svg {
-  width: 34px;
-  height: 34px;
+  color: #bababa;
+  width: 28px;
+  height: 28px;
 }
 .account svg:hover {
   color: var(--violet-dark);

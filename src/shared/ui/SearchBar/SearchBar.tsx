@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
+import { useWheelScroll } from '../../lib/Hook/index';
 
 import { IProduct } from '../../api/product/index';
 
@@ -12,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton, InputAdornment } from '@mui/material';
 
-import { searchBarStyles } from './SearchBar.styles';
+import { searchBarStyles, imageBoxStyles } from './SearchBar.styles';
 
 interface ISearchBarProps {
 	searchValue: string;
@@ -27,6 +29,8 @@ const SearchBar: React.FC<ISearchBarProps> = ({
 	isLoading,
 	data,
 }) => {
+ const onWheelScroll = useWheelScroll();
+
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
 	};
@@ -62,25 +66,14 @@ const SearchBar: React.FC<ISearchBarProps> = ({
 				<Paper
 					elevation={3}
 					sx={searchBarStyles.inputContent}
-					onWheel={event => {
-						const target = event.currentTarget;
-						if (
-							(event.deltaY > 0 &&
-								target.scrollHeight > target.scrollTop + target.clientHeight) ||
-							(event.deltaY < 0 && target.scrollTop > 0)
-						) {
-							event.stopPropagation();
-						}
-					}}
+					onWheel={onWheelScroll}
 				>
 					{isLoading ? (
-						<Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
+						<Box sx={searchBarStyles.progressBar}>
 							<CircularProgress size={24} />
 						</Box>
 					) : !data.length ? (
-						<Typography sx={{ p: 2, textAlign: 'center' }}>
-							No results
-						</Typography>
+						<Typography sx={searchBarStyles.noResult}>No results</Typography>
 					) : (
 						data.map(({ title, images, id }) => (
 							<MenuItem
@@ -90,17 +83,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({
 								onClick={() => setSearchValue('')}
 								sx={searchBarStyles.inputText}
 							>
-								<Box
-									sx={{
-										marginRight: '5px',
-										width: 60,
-										height: 60,
-										backgroundImage: `url(${images[0]})`,
-										backgroundSize: 'cover',
-										backgroundPosition: 'center',
-										borderRadius: '8px',
-									}}
-								/>
+								<Box sx={imageBoxStyles(images[0])} />
 								<Typography>{title}</Typography>
 							</MenuItem>
 						))

@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ICart } from '../../../features/Cart';
+import { IconButton } from '@mui/material';
 
 import styles from './CartIcon.module.css';
-import { IconButton } from '@mui/material';
 
 const CartIcon: FC<ICart> = ({ cartCount }) => {
 	const navigate = useNavigate();

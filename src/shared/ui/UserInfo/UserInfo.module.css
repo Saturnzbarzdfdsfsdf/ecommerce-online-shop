@@ -1,22 +1,26 @@
 .user {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	cursor: pointer;
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--dark);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	background: var(--dark);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	transition: all ease-in 0.3s;
+}
+.avatar:hover {
+	transform: scale(1.2);
 }
 
 .username {
-  font-size: 10px;
-  line-height: 12px;
-  color: var(--grey);
+	font-size: 10px;
+	line-height: 12px;
+	color: var(--grey);
 }
