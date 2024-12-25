@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import BG from '../../../shared/assets/img/comp.png';
+// import BG from '../../../shared/assets/img/Bgs.jpg';
 
 import styles from './Poster.module.css';
 

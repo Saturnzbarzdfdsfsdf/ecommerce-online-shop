@@ -18,11 +18,18 @@ const cartSlice = createSlice({
 			const existingItem = state.cart.find(item => item.id === payload.id);
 
 			if (existingItem) {
-				// Если продукт уже существует в корзине, обновляем количество
-				existingItem.quantity += payload.quantity || 1; // Увеличиваем количество на 1 по умолчанию
+				// Если передается новое количество, обновляем его
+				if (payload.quantity !== undefined) {
+					
+					existingItem.quantity = payload.quantity;
+
+				} else {
+					// Увеличиваем количество на 1, если quantity не передан
+					existingItem.quantity += 1;
+				}
 			} else {
 				// Если продукт новый, добавляем его в корзину
-				state.cart.push({ ...payload, quantity: 1 });
+				state.cart.push({ ...payload, quantity: payload.quantity || 1 });
 			}
 		},
 		removeItemCart: (state, { payload }: PayloadAction<number>) => {

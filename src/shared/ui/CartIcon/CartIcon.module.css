@@ -1,7 +1,7 @@
 .account {
   display: flex;
   align-items: center;
-  column-gap: 20px;
+  column-gap: 5px;
 }
 
 .favorites {
@@ -9,41 +9,23 @@
 }
 
 .account svg {
-  width: 24px;
-  height: 24px;
+  width: 34px;
+  height: 34px;
 }
-
-.icon-fav {
-  stroke: var(--grey);
-  fill: none;
-}
-
-.icon-cart {
-  fill: var(--grey);
-}
-
-.icon-fav:hover {
-  stroke: var(--white);
-}
-
-.icon-cart:hover {
-  fill: var(--white);
-}
-
-.cart {
-  position: relative;
+.account svg:hover {
+  color: var(--violet-dark);
 }
 
 .count {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 16px;
   background: var(--violet);
-  right: -2px;
-  bottom: -2px;
+  right: 5px;
+  bottom: 5px;
   border-radius: 50%;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 15px;
   color: var(--light);
   text-align: center;
   line-height: 16px;

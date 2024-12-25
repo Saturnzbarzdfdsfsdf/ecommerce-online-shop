@@ -1,32 +1,41 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
+
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ICart } from '../../../features/Cart';
 
 import styles from './CartIcon.module.css';
-
+import { IconButton } from '@mui/material';
 
 const CartIcon: FC<ICart> = ({ cartCount }) => {
+	const navigate = useNavigate();
+
 	const totalQuantity = Array.isArray(cartCount)
 		? cartCount.reduce((acc, item) => acc + (item.quantity || 0), 0)
 		: 0;
 
+	const handleFavoritesClick = () => {
+		navigate('/favorites');
+	};
+
+	const handleCartClick = () => {
+		navigate('/cart');
+	};
+
 	return (
 		<div className={styles.account}>
-			<Link className={styles.favorites} to='/favorites'>
-				<svg className={styles['icon-fav']}>
-					<use xlinkHref={'sprite.svg#heart'} />
-				</svg>
-			</Link>
+			<IconButton onClick={handleFavoritesClick} aria-label='favorite'>
+				<FavoriteBorderOutlinedIcon />
+			</IconButton>
 
-			<Link className={styles.cart} to='/cart'>
-				<svg className={styles['icon-cart']}>
-					<use xlinkHref={'sprite.svg#bag'} />
-				</svg>
-
+			<IconButton onClick={handleCartClick} aria-label='delete'>
+				<ShoppingBagOutlinedIcon />
 				{totalQuantity > 0 && (
 					<span className={styles.count}>{totalQuantity}</span>
 				)}
-			</Link>
+			</IconButton>
 		</div>
 	);
 };

@@ -10,12 +10,12 @@ import { useGetProductsQuery } from '../../../redux/api/apiSlice';
 
 import { CartIcon, SearchBar, UserInfo } from '../../../shared/ui/index';
 
+
 import { ROUTES } from '../../../shared/consts/routes';
 
 import { IUser } from '../../../shared/api/user/userTypes';
 
 import { selectCart } from '../../../features/Cart';
-
 import { selectCurrentUser } from '../../../entities/user/index';
 
 import LOGO from '../../../shared/assets/img/React.svg';
@@ -48,6 +48,7 @@ const Header: React.FC = () => {
 	}, [currentUser]);
 
 	const onProfileClick = () => {
+
 		if (!currentUser) {
 			dispatch(toggleForm(true));
 		} else {

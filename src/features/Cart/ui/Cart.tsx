@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../shared/lib/Hook/Hooks';
-
 import {
 	addItemToCart,
 	removeItemCart,
@@ -10,17 +9,20 @@ import {
 	ICartProduct,
 } from '../index';
 
+import CartItem from './CartItem';
+
 import { sumBy } from '../../../shared/consts/common';
 
 import styles from './Cart.module.css';
 
 const Cart: React.FC = () => {
 	const dispatch = useAppDispatch();
-
 	const cart = useSelector(selectCart);
 
 	const updateCartItemQuantity = (item: ICartProduct, quantity: number) => {
-		dispatch(addItemToCart({ ...item, quantity }));
+		if (quantity > 0) {
+			dispatch(addItemToCart({ ...item, quantity }));
+		}
 	};
 
 	const removeItem = (id: number) => {
@@ -36,7 +38,34 @@ const Cart: React.FC = () => {
 			) : (
 				<>
 					<div className={styles.list}>
-						{cart.map(item => {
+						{cart.map(item => (
+							<CartItem
+								key={item.id}
+								item={item}
+								onUpdateQuantity={updateCartItemQuantity}
+								onRemove={removeItem}
+							/>
+						))}
+					</div>
+
+					<div className={styles.actions}>
+						<div className={styles.total}>
+							Total Price
+							<span>
+								{sumBy(cart.map(({ quantity, price }) => quantity * price))}$
+							</span>
+						</div>
+					</div>
+				</>
+			)}
+		</section>
+	);
+};
+
+export default Cart;
+
+{
+	/* {cart.map(item => {
 							const { title, category, images, price, id, quantity } = item;
 
 							return (
@@ -80,31 +109,17 @@ const Cart: React.FC = () => {
 
 									<div className={styles.total}>{price * quantity}</div>
 
-									<div
+									<button
 										className={styles.close}
 										onClick={() => removeItem(item.id)}
 									>
 										<svg>
 											<use xlinkHref={'sprite.svg#close'} />
 										</svg>
-									</div>
+									</button>
+
 								</div>
 							);
 						})}
-					</div>
-
-					<div className={styles.actions}>
-						<div className={styles.total}>
-							Total Price
-							<span>
-								{sumBy(cart.map(({ quantity, price }) => quantity * price))}$
-							</span>
-						</div>
-					</div>
-				</>
-			)}
-		</section>
-	);
-};
-
-export default Cart;
+						 */
+}
