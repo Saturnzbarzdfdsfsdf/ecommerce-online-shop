@@ -14,14 +14,14 @@ export const fetchCategories = createAsyncThunk<
 	try {
 
 		const response = await getCategories(limit);
-		return response;
+		return { list: response };
 
 	} catch (err: unknown) {
 		const knownError = err as ErrorType;
 
 		return thunkAPI.rejectWithValue({
-			messageError: knownError.message,
+			messageError: knownError.message || 'Unexpected error',
 			status: knownError.response?.status,
-		});
+		} as RejectedDataType);
 	}
 });

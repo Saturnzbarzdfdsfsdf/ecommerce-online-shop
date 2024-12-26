@@ -42,22 +42,25 @@ const productsSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
-			.addCase(fetchProducts.pending, state => {
+			.addCase(fetchProducts.pending, state => 
+			{
 				state.loading = true;
 				state.error = null;
 			})
 			.addCase(
 				fetchProducts.fulfilled,
 				(state, action: PayloadAction<{ products: IProduct[] }>) => {
-					state.products = action.payload;
-
+					state.products = action.payload.products;
 					state.loading = false;
 				}
 			)
-			.addCase(fetchProducts.rejected, (state, action) => {
+			.addCase(fetchProducts.rejected, (state, action) => 
+				{
 				state.loading = false;
 				if (action.payload) {
 					state.error = action.payload.messageError;
+				} else {
+					state.error = 'Unknown error occurred';
 				}
 			});
 	},

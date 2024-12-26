@@ -9,15 +9,14 @@ import { selectCategories } from '../../../entities/categories';
 import styles from './Sidebar.module.css';
 
 const Sidebar: React.FC = () => {
-	
-	const sideCategoryList = useSelector(selectCategories)
+	const sideCategoryList = useSelector(selectCategories);
 
 	return (
 		<section className={styles.sidebar}>
 			<div className={styles.title}>CATEGORIES</div>
 			<nav>
 				<ul className={styles.menu}>
-					{sideCategoryList.map(category => (
+					{sideCategoryList && sideCategoryList.map(category => (
 						<SideCategoryItem key={category.id} {...category} />
 					))}
 				</ul>
@@ -40,4 +39,3 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
-

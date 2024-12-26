@@ -7,7 +7,7 @@ export interface ICategoriesState {
 }
 
 export interface ICategoriesProps {
+	products: ICategory[];
 	title: string;
-	products?: ICategory[];
 	amount: number;
 }

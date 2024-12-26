@@ -7,7 +7,7 @@ const PRODUCTS_ENDPOINT = 'products';
 export const getProducts = async (
 	offset: number,
 	limitProduct: number
-): Promise<{ products: IProduct[]}> => {
+): Promise< IProduct[]> => {
 	return await apiGet(
 		`${PRODUCTS_ENDPOINT}?offset=${offset}&limit=${limitProduct}`
 	);

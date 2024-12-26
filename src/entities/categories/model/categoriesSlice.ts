@@ -16,21 +16,23 @@ const categoriesSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: builder => {
-		builder.addCase(fetchCategories.pending, state => {
+		builder.addCase(fetchCategories.pending, state => 
+		{
 			state.isLoading = true;
 			state.error = null;
 		});
 		builder.addCase(
 			fetchCategories.fulfilled,
-			(state, action: PayloadAction<{ list: ICategory[] }>) => {
-				state.list = action.payload;
+			(state, action: PayloadAction<{ list: ICategory[] }>) => 
+			{
+				state.list = action.payload.list;
 				state.isLoading = false;
 			}
 		);
-		builder.addCase(fetchCategories.rejected, (state, action) => {
+		builder.addCase(fetchCategories.rejected, (state, action) => 
+			{
 			state.isLoading = false;
-			if (action.payload && action.payload.messageError) {
-				
+			if (action.payload) {
 				state.error = action.payload.messageError;
 			} else {
 				state.error = 'Unknown error occurred';

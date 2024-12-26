@@ -16,14 +16,14 @@ export const fetchProducts = createAsyncThunk<
 
 		const response = await getProducts(offset, limitProduct);
 
-		return response;
+		return { products: response };
 
 	} catch (err: unknown) {
 		const knownError = err as ErrorType;
 
 		return thunkAPI.rejectWithValue({
-			messageError: knownError.message,
+			messageError: knownError.message || 'Unexpected error',
 			status: knownError.response?.status,
-		});
+		} as RejectedDataType);
 	}
 });

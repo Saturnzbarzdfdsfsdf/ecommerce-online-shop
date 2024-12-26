@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { IProductItem } from '../../../../shared/types';
+import { IProduct } from '../../../../shared/api/product/index';
 
 import styles from '../Product.module.css';
 
-type TProductDesc = Pick<IProductItem, 'title' | 'price' | 'description'>;
+type TProductDesc = Pick<IProduct, 'title' | 'price' | 'description'>;
 
 const ProductInfo: FC<TProductDesc> = ({ title, price, description }) => (
 	<div className={styles.info}>
