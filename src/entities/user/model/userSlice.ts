@@ -13,8 +13,6 @@ const updateCurrentUser = (
 };
 
 const initialState: IUserState = {
-	cart: [],
-
 	currentUser: null,
 	isLoading: false,
 	showForm: false,

@@ -5,12 +5,9 @@ import { IUser } from './index';
 const USERS_ENDPOINT = 'users';
 
 // Функция для созданию Юзера
-export const apiCreateUserRequest = async (
-	payload: IUser
-): Promise<{ user: IUser }> => {
-  
-	return await apiPost<{ user: IUser }, 
-  IUser>(`${USERS_ENDPOINT}`, payload);
+export const apiCreateUserRequest = async (payload: IUser): Promise<IUser> => {
+	const response = await apiPost<IUser, IUser>(`${USERS_ENDPOINT}`, payload);
+	return response; // Возвращаем только объект IUser
 };
 
 // Функция для логина
@@ -26,19 +23,22 @@ export const apiLoginRequest = async (payload: {
 
 // Функция для выполнения запроса на получение профиля
 export const apiGetProfileRequest = async (token: string): Promise<IUser> => {
-    const response = await apiGet<IUser>('profile', {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    return response;
+	const response = await apiGet<IUser>('profile', {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
+	return response;
 };
 
 // Функция для обновления пользователя
 export const apiUpdateUserRequest = async (
-    id: string,
-    data: Partial<IUser>
-): Promise<{ user: IUser }> => {
-
-    return await apiPost<{ user: IUser }, Partial<IUser>>(`users/${id}`, data);
+	id: number,
+	data: Partial<IUser>
+): Promise<IUser> => {
+	const response = await apiPost<IUser , Partial<IUser>>(
+		`users/${id}`,
+		data
+	);
+	return response;
 };
