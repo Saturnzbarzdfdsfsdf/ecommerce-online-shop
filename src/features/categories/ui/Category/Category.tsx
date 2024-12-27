@@ -6,7 +6,7 @@ import { useGetProductsQuery } from '../../../../redux/api/apiSlice';
 
 import { Products } from '../../../../pages/Products/index';
 
-import { Button } from '../../../../shared/ui/Button';
+import { Button } from '../../../../shared/ui/Button/index';
 
 import styles from './Category.module.css';
 
@@ -54,11 +54,6 @@ const Category: React.FC = () => {
 	const [params, setParams] = useState<QueryParams>(defaultParams);
 
 	const { data, isLoading, isSuccess } = useGetProductsQuery(params);
-
-	useEffect(() => {
-		if (!isLoading) return;
-		if (!Array.isArray(data)) return;
-	}, [data, isLoading]);
 
 	useEffect(() => {
 		if (!id) return;

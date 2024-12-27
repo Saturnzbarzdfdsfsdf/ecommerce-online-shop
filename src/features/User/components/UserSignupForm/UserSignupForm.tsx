@@ -7,13 +7,9 @@ import { useAppDispatch } from '../../../../shared/lib/Hook/Hooks';
 
 import { IUserFormProps } from '../../../../entities/user/model/userTypes';
 
-// import AVATAR from '../../../../shared/assets/img/avatar.jpg'
-
 import { IUser } from '../../../../shared/api/user/userTypes';
 
-import { Button } from '../../../../shared/ui/Button';
-
-// type TUser = Pick<IUser, 'avatar' | 'email' | 'password' | 'name'>
+import { Button } from '../../../../shared/ui/Button/index';
 
 import styles from '../UserComponentsForm.module.css';
 
